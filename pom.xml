@@ -7,6 +7,7 @@
   <modules>
   	<module>checkers-core</module>
   	<module>checkers-web</module>
+  	<module>checkers-jpa</module>
   </modules>
 
 
