@@ -2,25 +2,121 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
+  
   <parent>
     <groupId>isen.jee</groupId>
     <artifactId>checkers</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  
   <groupId>isen.jee</groupId>
   <artifactId>checkers-web</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>checkers-web</name>
   <url>http://maven.apache.org</url>
+  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  
+  <build>
+    <finalName>checkers</finalName>
+    <plugins>
+
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.6</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>net.sf.opk</groupId>
+        <artifactId>embedded-glassfish-web-plugin</artifactId>
+        <configuration>
+          <httpPort>9090</httpPort>
+        </configuration>
+        <executions>
+          <execution>
+            <id>start-glassfish</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>start</goal>
+            </goals>
+            <configuration>
+              <scanIntervalSeconds>0</scanIntervalSeconds>
+              <daemon>true</daemon>
+            </configuration>
+          </execution>
+          <execution>
+            <id>stop-glassfish</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>stop</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
+    </dependency>
+ 
+    <dependency>
+      <groupId>isen.jee</groupId>
+      <artifactId>checkers-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>isen.jee</groupId>
+      <artifactId>checkers-jpa</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>isen.jee</groupId>
+      <artifactId>checkers-rest</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-web-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <artifactId>commons-lang</artifactId>
+      <groupId>commons-lang</groupId>
+    </dependency>
+
+    <dependency>
+      <artifactId>commons-logging</artifactId>
+      <groupId>commons-logging</groupId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-firefox-driver</artifactId>
     </dependency>
   </dependencies>
 </project>
