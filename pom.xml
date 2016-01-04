@@ -6,6 +6,7 @@
   <packaging>pom</packaging>
   <modules>
   	<module>checkers-core</module>
+  	<module>checkers-web</module>
   </modules>
 
 
