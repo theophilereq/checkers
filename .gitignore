@@ -8,7 +8,7 @@ nuxeo-*
 # common stuff
 .classpath
 .project
-.settings
+
 .idea
 bin
 target
