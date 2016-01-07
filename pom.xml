@@ -199,7 +199,19 @@
 
       <dependency>
         <groupId>isen.jee</groupId>
-        <artifactId>checkers</artifactId>
+        <artifactId>checkers-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>isen.jee</groupId>
+        <artifactId>checkers-jpa</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>isen.jee</groupId>
+        <artifactId>checkers-rest</artifactId>
         <version>${project.version}</version>
       </dependency>
     </dependencies>
