@@ -7,18 +7,18 @@ public interface CheckersGame {
 	/**
 	 * Select a piece in a cell
 	 */
-    void selectPiece(ChipColour colour, int raw, int column);
+    void selectPiece(PieceColour colour, int raw, int column);
     
     /**
 	 * Drop the selected piece in a cell
 	 */
-    void dropPiece(ChipColour colour, int raw, int column);
+    void dropPiece(PieceColour colour, int raw, int column);
 
     /**
      * Returns the colour of the chip in a given cell, null if no
      * chip is present.
      */
-    ChipColour getCell(int column, int row);
+    PieceColour getCell(int column, int row);
 
     /**
      * Returns the number of columns.
@@ -33,5 +33,5 @@ public interface CheckersGame {
     /**
      * Returns the colour of the winner, null if no winner.
      */
-    ChipColour getWinner();
+    PieceColour getWinner();
 }

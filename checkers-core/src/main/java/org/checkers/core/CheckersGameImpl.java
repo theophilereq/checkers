@@ -1,7 +1,7 @@
 package org.checkers.core;
 
-import static org.checkers.core.ChipColour.BLACK;
-import static org.checkers.core.ChipColour.WHITE;
+import static org.checkers.core.PieceColour.BLACK;
+import static org.checkers.core.PieceColour.WHITE;
 
 public class CheckersGameImpl implements CheckersGame {
 
@@ -9,7 +9,7 @@ public class CheckersGameImpl implements CheckersGame {
     public static final int ROWS_NUMBER = 10;
     public static final String OUTSIDE_OF_BOARD_ERROR = "It is not possible to play outside of the board";
 
-    ChipColour[][] board = new ChipColour[COLUMNS_NUMBER][ROWS_NUMBER];
+    PieceColour[][] board = new PieceColour[COLUMNS_NUMBER][ROWS_NUMBER];
     
     public CheckersGameImpl() {
         initBoard();
@@ -32,12 +32,12 @@ public class CheckersGameImpl implements CheckersGame {
          }  	   	
     }
 
-	public void play(ChipColour colour, int column) {
+	public void play(PieceColour colour, int column) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public ChipColour getCell(int i, int j) {
+	public PieceColour getCell(int i, int j) {
 		  if ( i < 0 || i >= getColumnsNumber()) {
 	            return null;
 	        }
@@ -55,19 +55,19 @@ public class CheckersGameImpl implements CheckersGame {
 		return ROWS_NUMBER;
 	}
 
-	public ChipColour getWinner() {
+	public PieceColour getWinner() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void selectPiece(ChipColour colour, int raw, int column) {
+	public void selectPiece(PieceColour colour, int raw, int column) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void dropPiece(ChipColour colour, int raw, int column) {
+	public void dropPiece(PieceColour colour, int raw, int column) {
 		// TODO Auto-generated method stub
 		
 	}

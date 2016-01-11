@@ -1,8 +1,8 @@
 package org.checkers.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.checkers.core.ChipColour.BLACK;
-import static org.checkers.core.ChipColour.WHITE;
+import static org.checkers.core.PieceColour.BLACK;
+import static org.checkers.core.PieceColour.WHITE;
 
 import org.junit.Test;
 import org.junit.Before;

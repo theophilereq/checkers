@@ -1,5 +1,5 @@
 package org.checkers.core;
 
-public enum ChipColour {
+public enum PieceColour {
     BLACK, WHITE
 }
