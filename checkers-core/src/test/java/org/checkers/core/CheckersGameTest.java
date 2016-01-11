@@ -68,12 +68,6 @@ public class CheckersGameTest {
 
 	@Test
 	public void aPlayerMayMoveAPiece() throws Exception {
-		game.selectPiece(BLACK, 4, 0);
-		assertThat(game.getCell(4, 0)).isEqualTo(BLACK);
-
-		game.dropPiece(BLACK, 5, 1);
-		assertThat(game.getCell(4, 0)).isNull();
-		assertThat(game.getCell(5, 1)).isEqualTo(BLACK);
 
 	}
 

@@ -1,8 +1,5 @@
 package org.checkers.core;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.checkers.core.ChipColour.BLACK;
 import static org.checkers.core.ChipColour.WHITE;
 
@@ -61,6 +58,18 @@ public class CheckersGameImpl implements CheckersGame {
 	public ChipColour getWinner() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void selectPiece(ChipColour colour, int raw, int column) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dropPiece(ChipColour colour, int raw, int column) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
