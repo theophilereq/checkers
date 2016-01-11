@@ -3,6 +3,8 @@ package org.checkers.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.checkers.core.ChipColour.BLACK;
+import static org.checkers.core.ChipColour.WHITE;
 
 public class CheckersGameImpl implements CheckersGame {
 
@@ -10,7 +12,7 @@ public class CheckersGameImpl implements CheckersGame {
     public static final int ROWS_NUMBER = 10;
     public static final String OUTSIDE_OF_BOARD_ERROR = "It is not possible to play outside of the board";
 
-    List<List<ChipColour>> board = new ArrayList<>(COLUMNS_NUMBER);
+    ChipColour[][] board = new ChipColour[COLUMNS_NUMBER][ROWS_NUMBER];
     
     public CheckersGameImpl() {
         initBoard();
@@ -18,10 +20,19 @@ public class CheckersGameImpl implements CheckersGame {
 
     private void initBoard() {
     	
-    	 for (int i = 0; i < COLUMNS_NUMBER; i++) {
-             board.add(new ArrayList<ChipColour>(ROWS_NUMBER));
-         }
-       
+    	 for (int x = 0; x < COLUMNS_NUMBER; x++) {
+    		 if(x%2 == 0) {
+    			 board[x][1] = BLACK;
+        		 board[x][3] = BLACK;
+        		 board[x][7] = WHITE;
+        		 board[x][9] = WHITE;
+    		 }else{
+    			 board[x][0] = BLACK;
+        		 board[x][2] = BLACK;
+        		 board[x][6] = WHITE;
+        		 board[x][8] = WHITE;
+    		 }
+         }  	   	
     }
 
 	public void play(ChipColour colour, int column) {
@@ -29,19 +40,22 @@ public class CheckersGameImpl implements CheckersGame {
 		
 	}
 
-	public ChipColour getCell(int column, int row) {
-		// TODO Auto-generated method stub
-		return null;
+	public ChipColour getCell(int i, int j) {
+		  if ( i < 0 || i >= getColumnsNumber()) {
+	            return null;
+	        }
+		  if ( j < 0 || j >= getRowsNumber()) {
+	            return null;
+	        }
+		  return board[i][j];
 	}
 
 	public int getColumnsNumber() {
-		// TODO Auto-generated method stub
-		return 0;
+		return COLUMNS_NUMBER;
 	}
 
 	public int getRowsNumber() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ROWS_NUMBER;
 	}
 
 	public ChipColour getWinner() {
