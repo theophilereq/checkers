@@ -4,6 +4,6 @@
 <title>Checkers</title>
 </head>
 <body>
-<c:redirect url="/g/" />
+<p>Hello</p>
 </body>
 </html>
