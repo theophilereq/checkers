@@ -18,7 +18,6 @@ public class CheckersGameTest {
 
 	@Test
 	public void isBoardInitialized() throws Exception {
-		//
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				// If the column is even
@@ -26,19 +25,19 @@ public class CheckersGameTest {
 					// Checks the position of the pieces
 					switch (j) {
 					case 1:
-						assertThat(game.getCell(i, j)).isEqualTo(BLACK);
+						assertThat(game.getCell(j, i)).isEqualTo(BLACK);
 						break;
 					case 3:
-						assertThat(game.getCell(i, j)).isEqualTo(BLACK);
+						assertThat(game.getCell(j, i)).isEqualTo(BLACK);
 						break;
 					case 7:
-						assertThat(game.getCell(i, j)).isEqualTo(WHITE);
+						assertThat(game.getCell(j, i)).isEqualTo(WHITE);
 						break;
 					case 9:
-						assertThat(game.getCell(i, j)).isEqualTo(WHITE);
+						assertThat(game.getCell(j, i)).isEqualTo(WHITE);
 						break;
 					default:
-						assertThat(game.getCell(i, j)).isNull();
+						assertThat(game.getCell(j, i)).isNull();
 						break;
 					}
 				}
@@ -46,19 +45,19 @@ public class CheckersGameTest {
 				else {
 					switch (j) {
 					case 0:
-						assertThat(game.getCell(i, j)).isEqualTo(BLACK);
+						assertThat(game.getCell(j, i)).isEqualTo(BLACK);
 						break;
 					case 2:
-						assertThat(game.getCell(i, j)).isEqualTo(BLACK);
+						assertThat(game.getCell(j, i)).isEqualTo(BLACK);
 						break;
 					case 6:
-						assertThat(game.getCell(i, j)).isEqualTo(WHITE);
+						assertThat(game.getCell(j, i)).isEqualTo(WHITE);
 						break;
 					case 8:
-						assertThat(game.getCell(i, j)).isEqualTo(WHITE);
+						assertThat(game.getCell(j, i)).isEqualTo(WHITE);
 						break;
 					default:
-						assertThat(game.getCell(i, j)).isNull();
+						assertThat(game.getCell(j, i)).isNull();
 						break;
 					}
 				}
@@ -68,6 +67,12 @@ public class CheckersGameTest {
 
 	@Test
 	public void aPlayerMayMoveAPiece() throws Exception {
+		game.selectPiece(null, 3, 0);
+		assertThat(game.getCell(3, 0)).isEqualTo(BLACK);
+		
+		game.dropPiece(null, 4, 1);
+		assertThat(game.getCell(3, 0)).isNull();
+		assertThat(game.getCell(4, 1)).isEqualTo(BLACK);
 
 	}
 

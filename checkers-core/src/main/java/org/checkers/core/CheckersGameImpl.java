@@ -8,8 +8,12 @@ public class CheckersGameImpl implements CheckersGame {
 	public static final int COLUMNS_NUMBER = 10;
     public static final int ROWS_NUMBER = 10;
     public static final String OUTSIDE_OF_BOARD_ERROR = "It is not possible to play outside of the board";
-
-    PieceColour[][] board = new PieceColour[COLUMNS_NUMBER][ROWS_NUMBER];
+    public static final String EMPTY_CELL = "It is not possible to select an empty cell";
+    public static final String CELL_ALREADY_FULL = "It is not possible to drop a piec on an other";
+    public static int rowPieceToMove;
+    public static int columnPieceToMove;
+    
+    PieceColour[][] board = new PieceColour[ROWS_NUMBER][COLUMNS_NUMBER];
     
     public CheckersGameImpl() {
         initBoard();
@@ -17,31 +21,27 @@ public class CheckersGameImpl implements CheckersGame {
 
     private void initBoard() {
     	
-    	 for (int x = 0; x < COLUMNS_NUMBER; x++) {
-    		 if(x%2 == 0) {
-    			 board[x][1] = BLACK;
-        		 board[x][3] = BLACK;
-        		 board[x][7] = WHITE;
-        		 board[x][9] = WHITE;
+    	 for (int i = 0; i < COLUMNS_NUMBER; i++) {
+    		 if(i%2 == 0) {
+    			 board[1][i] = BLACK;
+        		 board[3][i] = BLACK;
+        		 board[7][i] = WHITE;
+        		 board[9][i] = WHITE;
     		 }else{
-    			 board[x][0] = BLACK;
-        		 board[x][2] = BLACK;
-        		 board[x][6] = WHITE;
-        		 board[x][8] = WHITE;
+    			 board[0][i] = BLACK;
+        		 board[2][i] = BLACK;
+        		 board[6][i] = WHITE;
+        		 board[8][i] = WHITE;
     		 }
          }  	   	
     }
 
-	public void play(PieceColour colour, int column) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public PieceColour getCell(int i, int j) {
-		  if ( i < 0 || i >= getColumnsNumber()) {
+		  if ( i < 0 || i >= getRowsNumber()) {
 	            return null;
 	        }
-		  if ( j < 0 || j >= getRowsNumber()) {
+		  if ( j < 0 || j >= getColumnsNumber()) {
 	            return null;
 	        }
 		  return board[i][j];
@@ -61,14 +61,24 @@ public class CheckersGameImpl implements CheckersGame {
 	}
 
 	@Override
-	public void selectPiece(PieceColour colour, int raw, int column) {
-		// TODO Auto-generated method stub
-		
+	public void selectPiece(PieceColour colour, int row, int column) {
+		if (getCell(row, column) == null){
+			throw new GameException(EMPTY_CELL);
+		}else{
+			rowPieceToMove = row;
+			columnPieceToMove = column;
+		}
+			
 	}
 
 	@Override
-	public void dropPiece(PieceColour colour, int raw, int column) {
-		// TODO Auto-generated method stub
+	public void dropPiece(PieceColour colour, int row, int column) {
+		if (getCell(row, column) != null){
+			throw new GameException(CELL_ALREADY_FULL);
+		}else{
+			board[row][column] = getCell(rowPieceToMove, columnPieceToMove);
+			board[rowPieceToMove][columnPieceToMove] = null;
+		}
 		
 	}
 	
