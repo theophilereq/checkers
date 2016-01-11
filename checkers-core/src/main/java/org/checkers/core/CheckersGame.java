@@ -5,9 +5,14 @@ public interface CheckersGame {
 
 
 	/**
-	 * Play a chip in a given column.
+	 * Select a piece in a cell
 	 */
-    void play(ChipColour colour, int column);
+    void selectPiece(ChipColour colour, int raw, int column);
+    
+    /**
+	 * Drop the selected piece in a cell
+	 */
+    void dropPiece(ChipColour colour, int raw, int column);
 
     /**
      * Returns the colour of the chip in a given cell, null if no
