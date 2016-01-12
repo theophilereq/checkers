@@ -70,7 +70,8 @@ public class CheckersGameTest {
 		game.selectPiece(null, 3, 0);
 		assertThat(game.getCell(3, 0)).isEqualTo(BLACK);
 		
-		game.dropPiece(null, 4, 1);
+		game.dropPiece(game.getCell(3, 0), 4, 1);
+		assertThat(game.isThePieceAutorizeToMove(BLACK, 4, 1)).isTrue();
 		assertThat(game.getCell(3, 0)).isNull();
 		assertThat(game.getCell(4, 1)).isEqualTo(BLACK);
 

@@ -19,6 +19,11 @@ public interface CheckersGame {
      * chip is present.
      */
     PieceColour getCell(int row, int column);
+    
+    /**
+     * Returns true if the piece is authorize to do the movement, false if not
+     */
+    boolean isThePieceAutorizeToMove(PieceColour colour, int row, int column);
 
     /**
      * Returns the number of columns.
