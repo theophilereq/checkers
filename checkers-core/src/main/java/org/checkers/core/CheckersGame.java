@@ -1,30 +1,31 @@
 package org.checkers.core;
 
-
 public interface CheckersGame {
-
-
 	/**
 	 * Select a piece in a cell
+	 * @param colour
+	 * @param row
+	 * @param column
+	 * @throws GameException if an empty cell is selected
 	 */
-    void selectPiece(PieceColour colour, int row, int column);
+    void selectPiece(PieceColour colour, int row, int column) throws GameException;
     
     /**
 	 * Drop the selected piece in a cell
+	 * @param colour
+	 * @param row
+	 * @param column
+	 * @throws GameException if the cell is already full or it's not allowed to drop in that cell
 	 */
-    void dropPiece(PieceColour colour, int row, int column);
+    void dropPiece(PieceColour colour, int row, int column) throws GameException;
 
     /**
-     * Returns the colour of the piece in a given cell, null if no
-     * piece is present.
+     * Returns the colour of the piece in a given cell, null if no piece is present
+	 * @param row
+	 * @param column
      */
     PieceColour getCell(int row, int column);
     
-    /**
-     * Returns true if the piece is authorize to do the movement, false if not
-     */
-    boolean isThePieceAutorizeToMove(PieceColour colour, int row, int column);
-
     /**
      * Returns the number of columns
      */
@@ -39,4 +40,5 @@ public interface CheckersGame {
      * Returns the colour of the winner, null if no winner
      */
     PieceColour getWinner();
+    
 }

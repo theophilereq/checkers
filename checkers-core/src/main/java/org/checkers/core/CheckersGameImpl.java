@@ -9,7 +9,7 @@ public class CheckersGameImpl implements CheckersGame {
 	public static final int ROWS_NUMBER = 10;
 	public static final String OUTSIDE_OF_BOARD_ERROR = "It is not possible to play outside of the board";
 	public static final String EMPTY_CELL = "It is not possible to select an empty cell";
-	public static final String CELL_ALREADY_FULL = "It is not possible to drop a piec on an other";
+	public static final String CELL_ALREADY_FULL = "It is not possible to drop a piece on another";
 	public static final String NOT_AUTHORIZED_TO_MOVE = "It is not authorized to do this movement";
 	public static int rowPieceToMove;
 	public static int columnPieceToMove;
@@ -37,35 +37,49 @@ public class CheckersGameImpl implements CheckersGame {
 	}
 
 	@Override
-	public PieceColour getCell(int i, int j) {
-		if (i < 0 || i >= getRowsNumber()) {
-			return null;
+	public void selectPiece(PieceColour colour, int row, int column) {
+		if (row < 0 || row >= getRowsNumber()) {
+			throw new GameException(OUTSIDE_OF_BOARD_ERROR);
 		}
-		if (j < 0 || j >= getColumnsNumber()) {
-			return null;
+		if (column < 0 || column >= getColumnsNumber()) {
+			throw new GameException(OUTSIDE_OF_BOARD_ERROR);
 		}
-		return board[i][j];
+		if (getCell(row, column) == null) {
+			throw new GameException(EMPTY_CELL);
+		} else {
+			rowPieceToMove = row;
+			columnPieceToMove = column;
+		}
 	}
 
 	@Override
-	public boolean isThePieceAutorizeToMove(PieceColour colour, int row, int column) {
-		boolean isAuthorize = false;
-		switch (colour) {
-		case BLACK:
-			if (rowPieceToMove == row - 1 && (columnPieceToMove == column + 1 || columnPieceToMove == column - 1)) {
-				isAuthorize = true;
-			}
-			break;
-		case WHITE:
-			if (rowPieceToMove == row + 1 && (columnPieceToMove == column + 1 || columnPieceToMove == column - 1)) {
-				isAuthorize = true;
-			}
-			break;
-		default:
-			isAuthorize = false;
-			break;
+	public void dropPiece(PieceColour colour, int row, int column) {
+		if (row < 0 || row >= getRowsNumber()) {
+			throw new GameException(OUTSIDE_OF_BOARD_ERROR);
 		}
-		return isAuthorize;
+		if (column < 0 || column >= getColumnsNumber()) {
+			throw new GameException(OUTSIDE_OF_BOARD_ERROR);
+		}
+		if (getCell(row, column) != null) {
+			throw new GameException(CELL_ALREADY_FULL);
+		}
+		if (isPieceAuthorizedToMove(colour, row, column)) {
+			board[row][column] = getCell(rowPieceToMove, columnPieceToMove);
+			board[rowPieceToMove][columnPieceToMove] = null;
+		} else {
+			throw new GameException(NOT_AUTHORIZED_TO_MOVE);
+		}
+	}
+
+	@Override
+	public PieceColour getCell(int row, int column) {
+		if (row < 0 || row >= getRowsNumber()) {
+			return null;
+		}
+		if (column < 0 || column >= getColumnsNumber()) {
+			return null;
+		}
+		return board[row][column];
 	}
 
 	@Override
@@ -84,28 +98,25 @@ public class CheckersGameImpl implements CheckersGame {
 		return null;
 	}
 
-	@Override
-	public void selectPiece(PieceColour colour, int row, int column) {
-		if (getCell(row, column) == null) {
-			throw new GameException(EMPTY_CELL);
-		} else {
-			rowPieceToMove = row;
-			columnPieceToMove = column;
-		}
-	}
+	public boolean isPieceAuthorizedToMove(PieceColour colour, int row, int column) {
+		boolean authorized = false;
 
-	@Override
-	public void dropPiece(PieceColour colour, int row, int column) {
-		if (getCell(row, column) != null) {
-			throw new GameException(CELL_ALREADY_FULL);
+		switch (colour) {
+		case BLACK:
+			if (rowPieceToMove == row - 1 && (columnPieceToMove == column + 1 || columnPieceToMove == column - 1)) {
+				authorized = true;
+			}
+			break;
+		case WHITE:
+			if (rowPieceToMove == row + 1 && (columnPieceToMove == column + 1 || columnPieceToMove == column - 1)) {
+				authorized = true;
+			}
+			break;
+		default:
+			authorized = false;
+			break;
 		}
-		if (isThePieceAutorizeToMove(colour, row, column)) {
-			board[row][column] = getCell(rowPieceToMove, columnPieceToMove);
-			board[rowPieceToMove][columnPieceToMove] = null;
-		} else {
-			throw new GameException(NOT_AUTHORIZED_TO_MOVE);
-		}
-
+		return authorized;
 	}
 
 }
