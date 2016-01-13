@@ -15,8 +15,8 @@ public interface CheckersGame {
     void dropPiece(PieceColour colour, int row, int column);
 
     /**
-     * Returns the colour of the chip in a given cell, null if no
-     * chip is present.
+     * Returns the colour of the piece in a given cell, null if no
+     * piece is present.
      */
     PieceColour getCell(int row, int column);
     
@@ -26,17 +26,17 @@ public interface CheckersGame {
     boolean isThePieceAutorizeToMove(PieceColour colour, int row, int column);
 
     /**
-     * Returns the number of columns.
+     * Returns the number of columns
      */
     int getColumnsNumber();
 
     /**
-     * Returns the number of rows.
+     * Returns the number of rows
      */
     int getRowsNumber();
 
     /**
-     * Returns the colour of the winner, null if no winner.
+     * Returns the colour of the winner, null if no winner
      */
     PieceColour getWinner();
 }
