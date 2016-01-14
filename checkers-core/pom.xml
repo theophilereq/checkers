@@ -5,15 +5,13 @@
   
   <parent>
     <groupId>isen.jee</groupId>
-    <artifactId>checkers</artifactId>
+    <artifactId>checkers-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   
-  <groupId>isen.jee</groupId>
   <artifactId>checkers-core</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>checkers-core</name>
-  <url>http://maven.apache.org</url>
+  <name>Checkers :: Core model</name>
+  <packaging>jar</packaging>
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
