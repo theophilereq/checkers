@@ -1,6 +1,7 @@
 package org.checkers.core;
 
 public interface CheckersGame {
+
 	/**
 	 * Select a piece in a cell
 	 * @param colour

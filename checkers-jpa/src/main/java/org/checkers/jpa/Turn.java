@@ -21,25 +21,49 @@ public class Turn {
 
     private String colour;
 
-    @Column(name="col")
-    private int column;
+    @Column(name="rowSelected")
+    private int rowSelected;
+    
+    @Column(name="columnSelected")
+    private int columnSelected;
+    
+    @Column(name="rowTargeted")
+    private int rowTargeted;
+    
+    @Column(name="columnTargeted")
+    private int columnTargeted;
 
     public Turn() {
 
     }
 
-    public Turn(Game game, PieceColour colour, int column) {
+    public Turn(Game game, PieceColour colour, int rowSelected, int columnSelected, int rowTargeted, int columnTargeted) {
         this.game = game;
         this.colour = colour.toString();
-        this.column = column;
+        this.rowSelected = rowSelected;
+        this.columnSelected = columnSelected;
+        this.rowTargeted = rowTargeted;
+        this.columnTargeted = columnTargeted;
     }
 
     public PieceColour getColour() {
         return PieceColour.valueOf(colour);
     }
+    
+    public int getRowSelected() {
+        return rowSelected;
+    }
 
-    public int getColumn() {
-        return column;
+    public int getColumnSelected() {
+        return columnSelected;
+    }
+    
+    public int getRowTargeted() {
+        return rowTargeted;
+    }
+
+    public int getColumnTargeted() {
+        return columnTargeted;
     }
 
 

@@ -1,3 +1,4 @@
+
 package org.checkers.core;
 
 import static org.checkers.core.PieceColour.BLACK;
