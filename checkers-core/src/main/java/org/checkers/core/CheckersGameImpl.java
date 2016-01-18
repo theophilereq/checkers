@@ -12,8 +12,6 @@ public class CheckersGameImpl implements CheckersGame {
 	public static final String EMPTY_CELL = "It is not possible to select an empty cell";
 	public static final String CELL_ALREADY_FULL = "It is not possible to drop a piece on another";
 	public static final String NOT_AUTHORIZED_TO_MOVE = "It is not authorized to do this movement";
-	public static int rowPieceToMove;
-	public static int columnPieceToMove;
 
 	PieceColour[][] board = new PieceColour[ROWS_NUMBER][COLUMNS_NUMBER];
 
@@ -37,36 +35,24 @@ public class CheckersGameImpl implements CheckersGame {
 		}
 	}
 
-	@Override
-	public void selectPiece(PieceColour colour, int row, int column) {
-		if (row < 0 || row >= getRowsNumber()) {
-			throw new GameException(OUTSIDE_OF_BOARD_ERROR);
-		}
-		if (column < 0 || column >= getColumnsNumber()) {
-			throw new GameException(OUTSIDE_OF_BOARD_ERROR);
-		}
-		if (getCell(row, column) == null) {
-			throw new GameException(EMPTY_CELL);
-		} else {
-			rowPieceToMove = row;
-			columnPieceToMove = column;
-		}
-	}
 
 	@Override
-	public void dropPiece(PieceColour colour, int row, int column) {
-		if (row < 0 || row >= getRowsNumber()) {
+	public void movePiece(PieceColour colour, int rowSelected, int columnSelected, int rowTargeted, int columnTargeted) {
+		if (rowTargeted < 0 || rowTargeted >= getRowsNumber() || rowSelected < 0 || rowSelected >= getRowsNumber()) {
 			throw new GameException(OUTSIDE_OF_BOARD_ERROR);
 		}
-		if (column < 0 || column >= getColumnsNumber()) {
+		if (columnTargeted < 0 || columnTargeted >= getColumnsNumber() || columnSelected < 0 || columnSelected >= getColumnsNumber()) {
 			throw new GameException(OUTSIDE_OF_BOARD_ERROR);
 		}
-		if (getCell(row, column) != null) {
+		if (getCell(rowTargeted, columnTargeted) != null) {
 			throw new GameException(CELL_ALREADY_FULL);
 		}
-		if (isPieceAuthorizedToMove(colour, row, column)) {
-			board[row][column] = getCell(rowPieceToMove, columnPieceToMove);
-			board[rowPieceToMove][columnPieceToMove] = null;
+		if (getCell(rowSelected, columnSelected) == null) {
+			throw new GameException(EMPTY_CELL);
+		}
+		if (isPieceAuthorizedToMove(colour, rowSelected, columnSelected, rowTargeted, columnTargeted)) {
+			board[rowTargeted][columnTargeted] = getCell(rowSelected, columnSelected);
+			board[rowSelected][columnSelected] = null;
 		} else {
 			throw new GameException(NOT_AUTHORIZED_TO_MOVE);
 		}
@@ -99,17 +85,17 @@ public class CheckersGameImpl implements CheckersGame {
 		return null;
 	}
 
-	public boolean isPieceAuthorizedToMove(PieceColour colour, int row, int column) {
+	public boolean isPieceAuthorizedToMove(PieceColour colour, int rowSelected, int columnSelected, int rowTargeted, int columnTargeted) {
 		boolean authorized = false;
 
 		switch (colour) {
 		case BLACK:
-			if (rowPieceToMove == row - 1 && (columnPieceToMove == column + 1 || columnPieceToMove == column - 1)) {
+			if (rowSelected == rowTargeted - 1 && (columnSelected == columnTargeted + 1 || columnSelected == columnTargeted - 1)) {
 				authorized = true;
 			}
 			break;
 		case WHITE:
-			if (rowPieceToMove == row + 1 && (columnPieceToMove == column + 1 || columnPieceToMove == column - 1)) {
+			if (rowSelected == rowTargeted + 1 && (columnSelected == columnTargeted + 1 || columnSelected == columnTargeted - 1)) {
 				authorized = true;
 			}
 			break;

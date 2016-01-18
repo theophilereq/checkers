@@ -68,10 +68,8 @@ public class CheckersGameTest {
 
 	@Test
 	public void aPlayerMayMoveAPiece() throws Exception {
-		game.selectPiece(null, 3, 0);
-		assertThat(game.getCell(3, 0)).isEqualTo(BLACK);
-
-		game.dropPiece(game.getCell(3, 0), 4, 1);
+		
+		game.movePiece(game.getCell(3, 0), 3, 0, 4, 1);
 		assertThat(game.getCell(3, 0)).isNull();
 		assertThat(game.getCell(4, 1)).isEqualTo(BLACK);
 	}
@@ -79,28 +77,28 @@ public class CheckersGameTest {
 	@Test
 	public void itCantPlayOutsideOfTheBoard() throws Exception {
 		try {
-			game.selectPiece(BLACK, 20, 5);
+			game.movePiece(BLACK, 20, 5, 5, 5);
 			fail("It should not be possible to play outside of the board");
 		} catch (GameException e) {
 			
 		}
 		
 		try {
-			game.selectPiece(BLACK, 5, 20);
+			game.movePiece(BLACK, 5, 20, 5, 5);
 			fail("It should not be possible to play outside of the board");
 		} catch(GameException e) {
 			
 		}
 		
 		try {
-			game.dropPiece(BLACK, 20, 5);
+			game.movePiece(BLACK, 5, 5, 20, 5);
 			fail("It should not be possible to play outside of the board");
 		} catch (GameException e) {
 			
 		}
 		
 		try {
-			game.dropPiece(BLACK, 5, 20);
+			game.movePiece(BLACK, 5, 5, 5, 20);
 			fail("It should not be possible to play outside of the board");
 		} catch(GameException e) {
 			
@@ -110,7 +108,7 @@ public class CheckersGameTest {
 	@Test
 	public void itCantSelectAnEmptyCell() throws Exception {
 		try {
-			game.selectPiece(BLACK, 0, 0);
+			game.movePiece(BLACK, 0, 0, 5 ,5);
 			fail("It should not be possible to select an empty cell");
 		} catch (GameException e) {
 			
@@ -120,7 +118,7 @@ public class CheckersGameTest {
 	@Test
 	public void itCantDropAPieceOnAnother() throws Exception {
 		try {
-			game.dropPiece(BLACK, 0, 1);
+			game.movePiece(BLACK, 0, 1, 1, 2);
 			fail("It should not be possible to drop a piece on another");
 		} catch (GameException e) {
 			
@@ -130,8 +128,7 @@ public class CheckersGameTest {
 	@Test
 	public void aPieceCantMakeABigMovement() throws Exception {
 		try {
-			game.selectPiece(BLACK, 0, 1);
-			game.dropPiece(BLACK, 5, 5);
+			game.movePiece(BLACK, 0, 1, 5, 5);
 			fail("It should not be authorized to do this movement");
 		} catch (GameException e) {
 			
