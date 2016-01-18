@@ -19,40 +19,37 @@ public class CheckersAdapter implements CheckersGame{
 		this.coreGame = new CheckersGameImpl();
 		
 		for (Turn turn : game.getTurns()){
-			this.coreGame.selectPiece(turn.getColour(), turn.getRowSelected(), turn.getColumnSelected());
-			this.coreGame.dropPiece(turn.getColour(), turn.getRowTargeted(), turn.getColumnTargeted());
+			this.coreGame.movePiece(turn.getColour(), turn.getRowSelected(), turn.getColumnSelected(), turn.getRowTargeted(), turn.getColumnTargeted());
 		}
 	}
 
 	@Override
-	public void selectPiece(PieceColour colour, int row, int column) throws GameException {
-		coreGame.selectPiece(colour, row, column);
-		
+	public void movePiece(PieceColour colour, int rowSelected, int columnSelected, int rowTargeted, int columnTargeted) throws GameException {
+		coreGame.movePiece(colour, rowSelected, columnSelected, rowTargeted, columnTargeted);
+		this.game.getTurns().add(new Turn(this.game, colour, rowSelected, columnSelected, rowTargeted, columnTargeted));
+		switchTurn();
+
+		//dao.save(game);
 	}
 
-	@Override
-	public void dropPiece(PieceColour colour, int row, int column) throws GameException {
-//		coreGame.dropPiece(colour, row, column);
-//		this.game.getTurns().add(new Turn(this.game, colour, this.coreGame.rowPieceToMove, this.coreGame.columnPieceToMove, row, column))
-		
+	public void switchTurn() {
+		game.setCurrentTurn(game.getCurrentTurn() == PieceColour.BLACK ? PieceColour.WHITE
+				: PieceColour.BLACK);
 	}
 
 	@Override
 	public PieceColour getCell(int row, int column) {
-		// TODO Auto-generated method stub
-		return null;
+		return coreGame.getCell(column, row);
 	}
 
 	@Override
 	public int getColumnsNumber() {
-		// TODO Auto-generated method stub
-		return 0;
+		return coreGame.getColumnsNumber();
 	}
 
 	@Override
 	public int getRowsNumber() {
-		// TODO Auto-generated method stub
-		return 0;
+		return coreGame.getRowsNumber();
 	}
 
 	@Override

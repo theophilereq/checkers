@@ -1,13 +1,15 @@
 package org.checkers.core;
 
 public interface CheckersGame {
-    
+
     /**
-	 * Drop the selected piece in a cell
+	 *Select and drop a piece on the board
 	 * @param colour
-	 * @param row
-	 * @param column
-	 * @throws GameException if the cell is already full or it's not allowed to drop in that cell
+	 * @param rowSelected
+	 * @param columnSelected
+	 * @param rowTargeted
+	 * @param columnTargeted
+	 * @throws GameException
 	 */
     void movePiece(PieceColour colour, int rowSelected, int columnSelected, int rowTargeted, int columnTargeted) throws GameException;
 
