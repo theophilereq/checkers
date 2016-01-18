@@ -57,5 +57,9 @@ public class CheckersAdapter implements CheckersGame{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+    public String getToken() {
+        return game.getToken();
+    }
 
 }
