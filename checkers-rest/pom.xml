@@ -5,15 +5,12 @@
   
   <parent>
     <groupId>isen.jee</groupId>
-    <artifactId>checkers</artifactId>
+    <artifactId>checkers-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   
-  <groupId>isen.jee</groupId>
   <artifactId>checkers-rest</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>checkers-rest</name>
-  <url>http://maven.apache.org</url>
+  <name>Checkers :: REST API</name>
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,8 +20,6 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
     </dependency>
 
     <dependency>
