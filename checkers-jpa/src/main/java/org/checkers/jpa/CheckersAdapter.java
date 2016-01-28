@@ -62,4 +62,8 @@ public class CheckersAdapter implements CheckersGame{
         return game.getToken();
     }
 
+	public PieceColour getCurrentTurn() {
+		return game.getCurrentTurn();
+	}
+
 }
