@@ -53,5 +53,14 @@ public class CheckersDAOTest {
 		   assertThat(game).isNotNull();
 		   assertThat(game.getCell(4, 1)).isEqualTo(PieceColour.BLACK);
 	   }
+	   
+	   @Test
+	   public void adapterManagesTurn() throws Exception {
+		   CheckersAdapter game = dao.createNewGame();
+		   assertThat(game.getCurrentTurn()).isNotNull();
+		   assertThat(game.getCurrentTurn()).isEqualTo(PieceColour.WHITE);
+		   game = dao.loadFromToken(game.getToken());
+		   assertThat(game.getCurrentTurn()).isEqualTo(PieceColour.WHITE);
+	   }
 
 }
