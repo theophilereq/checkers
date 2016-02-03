@@ -48,5 +48,14 @@ public class CheckersBean  implements Serializable {
 
     }
 
+	public String getToken() {
+		return game.getToken();
+	}
+
+	public void loadFromToken(String token) {
+		game = dao.loadFromToken(token);
+		
+	}
+
 
 }

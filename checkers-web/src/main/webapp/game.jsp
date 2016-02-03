@@ -26,7 +26,7 @@
 
         <div id="header" class="header segment">
             <div class="container">
-                <h2 class="ui dividing header"Checkers</h2>
+                <h2 class="ui dividing header">Checkers</h2>
                 <div class="introduction">
                     <p>Simple checkers app that makes use of JEE servlets</p>
                 </div>
