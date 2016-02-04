@@ -45,7 +45,7 @@
       <div id="board" class="ui seven column padded grid">
           <a ng-repeat="col in game.cols" ng-click="play(col)" class="blue column">
 
-            <div ng-repeat="cell in col.cells.slice().reverse() track by $index" ng-class="{massive:true, circular:true, ui:true, icon:true, red:cell=='RED', yellow:cell=='YELLOW',  button:true}"></div>
+            <div ng-repeat="cell in col.cells.slice().reverse() track by $index" ng-class="{massive:true, circular:true, ui:true, icon:true, white:cell=='WHITE', black:cell=='BLACK',  button:true}"></div>
 
           </a>
       </div>
