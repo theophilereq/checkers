@@ -29,7 +29,7 @@
         </div>
 
         <div class="main container">
-            <div id="board" class="ui seven column padded grid">
+            <div id="board" class="ui ten column padded grid">
 
                 <c:forEach items="${game.columns}" var="col">
                     <a href="?playcol=${col.index}" class="blue column">
