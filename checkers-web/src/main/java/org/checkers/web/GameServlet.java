@@ -15,9 +15,17 @@ import org.apache.commons.lang.StringUtils;
 public class GameServlet extends HttpServlet {
 
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -1717626444319515434L;
 	@Inject
     CheckersBean game;
+	
+	@Override
+	public void destroy(){
+		
+	}
 
 	@Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,11 +38,17 @@ public class GameServlet extends HttpServlet {
 		} else {
 			game.loadFromToken(token);
 			
+			String selectedRow = request.getParameter("selectedRow");
+			String selectedCol = request.getParameter("selectedCol");
+			String targetedRow = request.getParameter("targetedRow");
+			String targetedCol = request.getParameter("targetedCol");
+			if(selectedRow != null && selectedCol != null && targetedRow != null && targetedCol != null) {
+				game.movePiece(Integer.parseInt(selectedRow), Integer.parseInt(selectedCol), Integer.parseInt(targetedRow), Integer.parseInt(targetedCol));
+				redirectToGameRoot(response, request);
+			} else {
+				request.getRequestDispatcher("/game.jsp").include(request, response);
+			}
 		}
-
-        game.createNewGame();
-
-        response.sendRedirect(request.getContextPath() + request.getServletPath());
     }
 
 	private void redirectToGameRoot(HttpServletResponse response, HttpServletRequest request) throws IOException {
