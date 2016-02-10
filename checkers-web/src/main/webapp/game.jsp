@@ -32,11 +32,11 @@
             <div id="board" class="ui ten column padded grid">
 
                 <c:forEach items="${game.columns}" var="col">
-                    <a class="blue column">
+                    <div class="blue column">
                         <c:forEach items="${col.cells}" var="cell">
-                            <div href="?selectedCol=${col.index}&selectedRow=${cell.index}" class="massive circular ui icon ${cell.cssColor}  button"></div>
+                            <a href="?selectedCol=${col.index}&selectedRow=${cell.index}" class="massive circular ui icon ${cell.cssColor}  button"></a>
                         </c:forEach>
-                    </a>
+                    </div>
                 </c:forEach>
             </div>
 
