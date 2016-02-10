@@ -7,10 +7,12 @@ import org.checkers.core.PieceColour;
  */
 public class ChipColourWrapper {
 
+    private int index;
     private PieceColour cell;
 
-    public ChipColourWrapper(PieceColour cell) {
+    public ChipColourWrapper(PieceColour cell, int i) {
         this.cell = cell;
+        this.index = i;
     }
 
     public String getCssColor() {
@@ -21,5 +23,9 @@ public class ChipColourWrapper {
         } else {
             return "";
         }
+    }
+
+    public int getIndex() {
+        return index;
     }
 }

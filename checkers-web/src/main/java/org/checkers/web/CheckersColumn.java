@@ -21,7 +21,7 @@ public class CheckersColumn {
     public List<ChipColourWrapper> getCells() {
         List<ChipColourWrapper> cells = new ArrayList<>();
         for (int i = game.getRowsNumber() - 1; i >= 0; i--) {
-            cells.add(new ChipColourWrapper(game.getCell(i, index)));
+            cells.add(new ChipColourWrapper(game.getCell(i, index), i));
         }
         return cells;
     }
