@@ -37,7 +37,7 @@ public class Turn {
 
     }
 
-    public Turn(Game game, PieceColour colour, int rowSelected, int columnSelected, int rowTargeted, int columnTargeted) {
+    public Turn(Game game, PieceColour colour, int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) {
         this.game = game;
         this.colour = colour.toString();
         this.rowSelected = rowSelected;

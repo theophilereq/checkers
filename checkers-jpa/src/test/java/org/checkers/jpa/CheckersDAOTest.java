@@ -43,15 +43,15 @@ public class CheckersDAOTest {
 	   @Test
 	   public void itCanPlayWithAJPAGame() throws Exception {
 		   CheckersAdapter game = dao.createNewGame();
-		   game.movePiece(PieceColour.BLACK, 3, 0, 4, 1);
+		   game.movePiece(PieceColour.BLACK, 0, 3, 1, 4);
 		   
-		   assertThat(game.getCell(4, 1)).isEqualTo(PieceColour.BLACK);
+		   assertThat(game.getCell(1, 4)).isEqualTo(PieceColour.BLACK);
 		   String token = game.getToken();
 		   
 		   em.clear();
 		   game = dao.loadFromToken(token);
 		   assertThat(game).isNotNull();
-		   assertThat(game.getCell(4, 1)).isEqualTo(PieceColour.BLACK);
+		   assertThat(game.getCell(1, 4)).isEqualTo(PieceColour.BLACK);
 	   }
 	   
 	   @Test

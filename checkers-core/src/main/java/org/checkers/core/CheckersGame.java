@@ -11,14 +11,14 @@ public interface CheckersGame {
 	 * @param columnTargeted
 	 * @throws GameException
 	 */
-    void movePiece(PieceColour colour, int rowSelected, int columnSelected, int rowTargeted, int columnTargeted) throws GameException;
+    void movePiece(PieceColour colour,  int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) throws GameException;
 
     /**
      * Returns the colour of the piece in a given cell, null if no piece is present
 	 * @param row
 	 * @param column
      */
-    PieceColour getCell(int row, int column);
+    PieceColour getCell(int column, int row);
     
     /**
      * Returns the number of columns

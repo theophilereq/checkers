@@ -33,8 +33,8 @@ public class CheckersBean  implements Serializable {
 
     }
 
-    public void movePiece( int rowSelected, int columnSelected, int rowTargeted, int columnTargeted) {
-        game.movePiece(game.getCurrentTurn(), rowSelected, columnSelected, rowTargeted, columnTargeted);
+    public void movePiece( int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) {
+        game.movePiece(game.getCurrentTurn(), columnSelected, rowSelected, columnTargeted, rowTargeted);
 
     }
 

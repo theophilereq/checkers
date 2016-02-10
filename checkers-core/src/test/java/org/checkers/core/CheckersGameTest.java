@@ -26,19 +26,19 @@ public class CheckersGameTest {
 					// Checks the position of the pieces
 					switch (j) {
 					case 1:
-						assertThat(game.getCell(j, i)).isEqualTo(BLACK);
+						assertThat(game.getCell(i, j)).isEqualTo(BLACK);
 						break;
 					case 3:
-						assertThat(game.getCell(j, i)).isEqualTo(BLACK);
+						assertThat(game.getCell(i, j)).isEqualTo(BLACK);
 						break;
 					case 7:
-						assertThat(game.getCell(j, i)).isEqualTo(WHITE);
+						assertThat(game.getCell(i, j)).isEqualTo(WHITE);
 						break;
 					case 9:
-						assertThat(game.getCell(j, i)).isEqualTo(WHITE);
+						assertThat(game.getCell(i, j)).isEqualTo(WHITE);
 						break;
 					default:
-						assertThat(game.getCell(j, i)).isNull();
+						assertThat(game.getCell(i, j)).isNull();
 						break;
 					}
 				}
@@ -46,19 +46,19 @@ public class CheckersGameTest {
 				else {
 					switch (j) {
 					case 0:
-						assertThat(game.getCell(j, i)).isEqualTo(BLACK);
+						assertThat(game.getCell(i, j)).isEqualTo(BLACK);
 						break;
 					case 2:
-						assertThat(game.getCell(j, i)).isEqualTo(BLACK);
+						assertThat(game.getCell(i, j)).isEqualTo(BLACK);
 						break;
 					case 6:
-						assertThat(game.getCell(j, i)).isEqualTo(WHITE);
+						assertThat(game.getCell(i, j)).isEqualTo(WHITE);
 						break;
 					case 8:
-						assertThat(game.getCell(j, i)).isEqualTo(WHITE);
+						assertThat(game.getCell(i, j)).isEqualTo(WHITE);
 						break;
 					default:
-						assertThat(game.getCell(j, i)).isNull();
+						assertThat(game.getCell(i, j)).isNull();
 						break;
 					}
 				}
@@ -69,36 +69,36 @@ public class CheckersGameTest {
 	@Test
 	public void aPlayerMayMoveAPiece() throws Exception {
 		
-		game.movePiece(game.getCell(3, 0), 3, 0, 4, 1);
-		assertThat(game.getCell(3, 0)).isNull();
-		assertThat(game.getCell(4, 1)).isEqualTo(BLACK);
+		game.movePiece(game.getCell(0, 3), 0, 3, 1, 4);
+		assertThat(game.getCell(0, 3)).isNull();
+		assertThat(game.getCell(1, 4)).isEqualTo(BLACK);
 	}
 
 	@Test
 	public void itCantPlayOutsideOfTheBoard() throws Exception {
 		try {
-			game.movePiece(BLACK, 20, 5, 5, 5);
+			game.movePiece(BLACK, 5, 20, 5, 5);
 			fail("It should not be possible to play outside of the board");
 		} catch (GameException e) {
 			
 		}
 		
 		try {
-			game.movePiece(BLACK, 5, 20, 5, 5);
+			game.movePiece(BLACK, 20, 5, 5, 5);
 			fail("It should not be possible to play outside of the board");
 		} catch(GameException e) {
 			
 		}
 		
 		try {
-			game.movePiece(BLACK, 5, 5, 20, 5);
+			game.movePiece(BLACK, 5, 5, 5, 20);
 			fail("It should not be possible to play outside of the board");
 		} catch (GameException e) {
 			
 		}
 		
 		try {
-			game.movePiece(BLACK, 5, 5, 5, 20);
+			game.movePiece(BLACK, 5, 5, 20, 5);
 			fail("It should not be possible to play outside of the board");
 		} catch(GameException e) {
 			
@@ -118,7 +118,7 @@ public class CheckersGameTest {
 	@Test
 	public void itCantDropAPieceOnAnother() throws Exception {
 		try {
-			game.movePiece(BLACK, 0, 1, 1, 2);
+			game.movePiece(BLACK, 1, 0, 2, 1);
 			fail("It should not be possible to drop a piece on another");
 		} catch (GameException e) {
 			
@@ -128,7 +128,7 @@ public class CheckersGameTest {
 	@Test
 	public void aPieceCantMakeABigMovement() throws Exception {
 		try {
-			game.movePiece(BLACK, 0, 1, 5, 5);
+			game.movePiece(BLACK, 1, 0, 5, 5);
 			fail("It should not be authorized to do this movement");
 		} catch (GameException e) {
 			

@@ -19,17 +19,17 @@ public class CheckersAdapter implements CheckersGame{
 		this.coreGame = new CheckersGameImpl();
 		
 		for (Turn turn : game.getTurns()){
-			this.coreGame.movePiece(turn.getColour(), turn.getRowSelected(), turn.getColumnSelected(), turn.getRowTargeted(), turn.getColumnTargeted());
+			this.coreGame.movePiece(turn.getColour(), turn.getColumnSelected(), turn.getRowSelected(), turn.getColumnTargeted(), turn.getRowTargeted());
 		}
 	}
 
 	@Override
-	public void movePiece(PieceColour colour, int rowSelected, int columnSelected, int rowTargeted, int columnTargeted) throws GameException {
-		coreGame.movePiece(colour, rowSelected, columnSelected, rowTargeted, columnTargeted);
-		this.game.getTurns().add(new Turn(this.game, colour, rowSelected, columnSelected, rowTargeted, columnTargeted));
+	public void movePiece(PieceColour colour, int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) throws GameException {
+		coreGame.movePiece(colour, columnSelected, rowSelected, columnTargeted, rowTargeted);
+		this.game.getTurns().add(new Turn(this.game, colour, columnSelected, rowSelected, columnTargeted, rowTargeted));
 		switchTurn();
 
-		//dao.save(game);
+		dao.save(game);
 	}
 
 	public void switchTurn() {
@@ -38,7 +38,7 @@ public class CheckersAdapter implements CheckersGame{
 	}
 
 	@Override
-	public PieceColour getCell(int row, int column) {
+	public PieceColour getCell(int column, int row) {
 		return coreGame.getCell(column, row);
 	}
 
