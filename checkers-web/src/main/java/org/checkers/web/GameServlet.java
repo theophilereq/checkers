@@ -43,7 +43,7 @@ public class GameServlet extends HttpServlet {
 			String targetedRow = request.getParameter("targetedRow");
 			String targetedCol = request.getParameter("targetedCol");
 			if(selectedRow != null && selectedCol != null ) {
-				game.movePiece(Integer.parseInt(selectedCol), Integer.parseInt(selectedRow),  4, 5);
+				game.movePiece(Integer.parseInt(selectedCol), Integer.parseInt(selectedRow),  Integer.parseInt(targetedCol), Integer.parseInt(targetedRow));
 				redirectToGameRoot(response, request);
 			} else {
 				request.getRequestDispatcher("/game.jsp").include(request, response);

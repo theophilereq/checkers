@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/semantic.min.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+        <script type="text/javascript" src="${pageContext.request.contextPath}/scripts/game.js"></script>
     </head>
 
     <body id="example" class="site">
@@ -34,7 +35,7 @@
                 <c:forEach items="${game.columns}" var="col">
                     <div class="blue column">
                         <c:forEach items="${col.cells}" var="cell">
-                            <a href="?selectedCol=${col.index}&selectedRow=${cell.index}" class="massive circular ui icon ${cell.cssColor}  button"></a>
+                            <a onclick="test(${col.index},${cell.index})" class="massive circular ui icon ${cell.cssColor}  button"></a>
                         </c:forEach>
                     </div>
                 </c:forEach>
