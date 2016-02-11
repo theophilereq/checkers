@@ -40,6 +40,7 @@
                     </div>
                 </c:forEach>
             </div>
+            <div class="massive circular ui icon ${game.turn}  button" >Turn</div>
 
             <a href="?reset" class="ui red button" id="reset">Reset game</a>
 

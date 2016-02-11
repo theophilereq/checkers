@@ -1,6 +1,7 @@
 package org.checkers.web;
 
 import org.checkers.core.CheckersGame;
+import org.checkers.core.PieceColour;
 import org.checkers.jpa.CheckersAdapter;
 import org.checkers.jpa.CheckersDAO;
 
@@ -31,6 +32,10 @@ public class CheckersBean  implements Serializable {
         }
         return cols;
 
+    }
+    
+    public PieceColour getTurn() {
+    	return game.getCurrentTurn();
     }
 
     public void movePiece( int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) {
