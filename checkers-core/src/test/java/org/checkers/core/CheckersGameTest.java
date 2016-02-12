@@ -134,5 +134,18 @@ public class CheckersGameTest {
 			
 		}
 	}
+	
+	@Test
+	public void itCanEatAPiece() throws Exception {
+		try {
+			game.movePiece(WHITE, 3, 6, 4, 5);
+			game.movePiece(BLACK, 4, 3, 5, 4);
+			game.movePiece(WHITE, 1, 6, 0, 5);
+			game.movePiece(BLACK, 5, 4, 3, 6);
+			assertThat(game.getCell(4, 5)).isNull();
+		} catch (GameException e){
+			
+		}
+	}
 
 }

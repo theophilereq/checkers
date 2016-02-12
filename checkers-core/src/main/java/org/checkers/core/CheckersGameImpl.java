@@ -53,6 +53,22 @@ public class CheckersGameImpl implements CheckersGame {
 		if (isPieceAuthorizedToMove(colour,  columnSelected,rowSelected,  columnTargeted,rowTargeted)) {
 			board[columnTargeted][rowTargeted] = getCell(columnSelected, rowSelected);
 			board[columnSelected][rowSelected] = null;
+		} else if (isPieceAuthorizedToEat(colour,  columnSelected,rowSelected,  columnTargeted,rowTargeted)){
+			board[columnTargeted][rowTargeted] = getCell(columnSelected, rowSelected);
+			board[columnSelected][rowSelected] = null;
+			int colToEat = 0;
+			int rowToEat = 0;
+			if(columnSelected - columnTargeted < 0){
+				colToEat = columnSelected +1;
+			}else{
+				colToEat = columnSelected -1;
+			}
+			if(rowSelected - rowTargeted <0){
+				rowToEat = rowSelected +1;
+			}else{
+				rowToEat = rowSelected -1;
+			}
+			board[colToEat][rowToEat] = null;
 		} else {
 			throw new GameException(NOT_AUTHORIZED_TO_MOVE);
 		}
@@ -96,6 +112,28 @@ public class CheckersGameImpl implements CheckersGame {
 			break;
 		case WHITE:
 			if (rowSelected == rowTargeted + 1 && (columnSelected == columnTargeted + 1 || columnSelected == columnTargeted - 1)) {
+				authorized = true;
+			}
+			break;
+		default:
+			authorized = false;
+			break;
+		}
+		return authorized;
+	}
+	
+	private boolean isPieceAuthorizedToEat(PieceColour colour, int columnSelected, int rowSelected, int columnTargeted,
+			int rowTargeted) {
+		boolean authorized = false;
+		
+		switch (colour) {
+		case BLACK:
+			if (rowSelected == rowTargeted - 2 && (columnSelected == columnTargeted + 2 || columnSelected == columnTargeted - 2)) {
+				authorized = true;
+			}
+			break;
+		case WHITE:
+			if (rowSelected == rowTargeted + 2 && (columnSelected == columnTargeted + 2 || columnSelected == columnTargeted - 2)) {
 				authorized = true;
 			}
 			break;

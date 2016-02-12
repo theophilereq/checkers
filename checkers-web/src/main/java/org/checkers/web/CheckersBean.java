@@ -20,6 +20,7 @@ import java.util.List;
 public class CheckersBean  implements Serializable {
 
     CheckersAdapter game ;
+    private PieceColour turn;
 
     @Inject
     CheckersDAO dao;
@@ -34,8 +35,15 @@ public class CheckersBean  implements Serializable {
 
     }
     
-    public PieceColour getTurn() {
-    	return game.getCurrentTurn();
+    public String getTurn() {
+    	turn = game.getCurrentTurn();
+        if(PieceColour.BLACK == turn) {
+            return "black";
+        } else if(PieceColour.WHITE ==turn) {
+            return "red";
+        } else {
+            return "";
+        }
     }
 
     public void movePiece( int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) {

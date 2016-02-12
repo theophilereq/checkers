@@ -11,7 +11,6 @@
     <body id="example" class="site">
         <div class="ui fixed inverted main menu">
             <div class="container">
-                <a class="launch item"><i class="content icon"></i></a>
                 <div class="title item">
                     <b>Checkers</b>
                 </div>
@@ -30,20 +29,21 @@
         </div>
 
         <div class="main container">
-            <div id="board" class="ui ten column padded grid">
+            <div id="board" class="ui ten row padded grid">
 
                 <c:forEach items="${game.columns}" var="col">
-                    <div class="blue column">
+                    <div id="checkers" class="column">
                         <c:forEach items="${col.cells}" var="cell">
-                            <a onclick="test(${col.index},${cell.index})" class="massive circular ui icon ${cell.cssColor}  button"></a>
+                        	<div id="boxGame" class="row">
+                        		<a  onclick="test(${col.index},${cell.index})" class="massive circular ui icon ${cell.cssColor}  button"></a>
+                        	</div>
                         </c:forEach>
                     </div>
                 </c:forEach>
             </div>
             <div class="massive circular ui icon ${game.turn}  button" >Turn</div>
-
             <a href="?reset" class="ui red button" id="reset">Reset game</a>
 
         </div>
-    </body>
+</body>
 </html>
