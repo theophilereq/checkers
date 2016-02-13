@@ -35,7 +35,7 @@
                     <div id="checkers" class="column">
                         <c:forEach items="${col.cells}" var="cell">
                         	<div id="boxGame" class="row">
-                        		<a  onclick="test(${col.index},${cell.index})" class="massive circular ui icon ${cell.cssColor}  button"></a>
+                        		<a  onclick="test(${col.index},${cell.index},'${cell.cssColor}')" class="massive circular ui icon ${cell.cssColor}  button"></a>
                         	</div>
                         </c:forEach>
                     </div>

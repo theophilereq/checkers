@@ -143,6 +143,8 @@ public class CheckersGameTest {
 			game.movePiece(WHITE, 1, 6, 0, 5);
 			game.movePiece(BLACK, 5, 4, 3, 6);
 			assertThat(game.getCell(4, 5)).isNull();
+			game.movePiece(WHITE, 6, 7, 8, 5);
+			fail("It should not be authorized to do this movement");
 		} catch (GameException e){
 			
 		}

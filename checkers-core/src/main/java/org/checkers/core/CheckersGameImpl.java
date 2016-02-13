@@ -58,7 +58,7 @@ public class CheckersGameImpl implements CheckersGame {
 			board[columnSelected][rowSelected] = null;
 			int colToEat = 0;
 			int rowToEat = 0;
-			if(columnSelected - columnTargeted < 0){
+			if(columnSelected - columnTargeted < 0 ){
 				colToEat = columnSelected +1;
 			}else{
 				colToEat = columnSelected -1;
@@ -68,7 +68,11 @@ public class CheckersGameImpl implements CheckersGame {
 			}else{
 				rowToEat = rowSelected -1;
 			}
-			board[colToEat][rowToEat] = null;
+			if(board[colToEat][rowToEat] != null && board[colToEat][rowToEat] != colour){
+				board[colToEat][rowToEat] = null;
+			}else{
+				throw new GameException(NOT_AUTHORIZED_TO_MOVE);
+			}
 		} else {
 			throw new GameException(NOT_AUTHORIZED_TO_MOVE);
 		}
@@ -125,22 +129,9 @@ public class CheckersGameImpl implements CheckersGame {
 	private boolean isPieceAuthorizedToEat(PieceColour colour, int columnSelected, int rowSelected, int columnTargeted,
 			int rowTargeted) {
 		boolean authorized = false;
-		
-		switch (colour) {
-		case BLACK:
-			if (rowSelected == rowTargeted - 2 && (columnSelected == columnTargeted + 2 || columnSelected == columnTargeted - 2)) {
+		if (Math.abs(rowSelected - rowTargeted) == 2  && Math.abs(columnSelected - columnTargeted) == 2) {
 				authorized = true;
 			}
-			break;
-		case WHITE:
-			if (rowSelected == rowTargeted + 2 && (columnSelected == columnTargeted + 2 || columnSelected == columnTargeted - 2)) {
-				authorized = true;
-			}
-			break;
-		default:
-			authorized = false;
-			break;
-		}
 		return authorized;
 	}
 

@@ -21,7 +21,7 @@ public class ChipColourWrapper {
         } else if(PieceColour.WHITE ==cell) {
             return "red";
         } else {
-            return "";
+            return "null";
         }
     }
 
