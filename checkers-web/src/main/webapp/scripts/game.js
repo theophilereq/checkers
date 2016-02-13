@@ -1,12 +1,15 @@
-function init() {
-  sessionStorage.setItem("isSelected",false);
-}
+$(document).ready(function() {
+	sessionStorage.setItem("isSelected",false);
 
-init();
+	$('.alert').hide();
+
+});
 
 function test(col,row,color){
 	if(color == "null" && sessionStorage.getItem("isSelected")== "false"){
-		alert("Please select a block with a piece on it");
+		//alert("Please select a block with a piece on it");
+
+		$('.alert').show();
 	}else{
 		if(sessionStorage.getItem("isSelected")== "false"){
 			sessionStorage.setItem("isSelected",true);
