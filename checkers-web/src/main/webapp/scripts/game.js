@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	sessionStorage.setItem("isSelected",false);
 	$('#emptyCell').hide();
-	$('#sameColor').hide();
 
 });
 
@@ -50,7 +49,6 @@ function setSessionForFirstClick(col,row,color)
 
 function changeSameColorCell(color)
 {
-	$('#sameColor').show();
 	$('.green').removeClass('green').addClass(color);
 }
 
