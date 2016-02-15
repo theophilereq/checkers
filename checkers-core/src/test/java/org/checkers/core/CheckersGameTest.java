@@ -140,12 +140,32 @@ public class CheckersGameTest {
 		try {
 			game.movePiece(WHITE, 3, 6, 4, 5);
 			game.movePiece(BLACK, 4, 3, 5, 4);
+			game.movePiece(WHITE, 2, 7, 3, 6);
+			game.movePiece(BLACK, 3, 4, 2, 5);
+			game.movePiece(WHITE, 1, 6, 0, 5);
+			game.movePiece(BLACK, 2, 5, 1, 6);
+			game.movePiece(WHITE, 3, 6, 2, 5);
+			game.movePiece(BLACK, 2, 3, 1, 4);
+			game.movePiece(WHITE, 3, 8, 2, 7);
+			game.movePiece(BLACK, 1, 2, 2, 3);
+			game.movePiece(WHITE, 2, 7, 3, 6);
+			game.movePiece(BLACK, 1, 6, 2, 7);
+			game.movePiece(WHITE, 4, 9, 3, 8);
+			game.movePiece(BLACK, 2, 7, 4, 9);
+			assertThat(game.getWinner()).isEqualTo(BLACK);
+		} catch (GameException e){
+			
+		}
+	}
+	
+	@Test
+	public void itCanWin() throws Exception {
+		try {
+			game.movePiece(WHITE, 3, 6, 4, 5);
+			game.movePiece(BLACK, 4, 3, 5, 4);
 			game.movePiece(WHITE, 1, 6, 0, 5);
 			game.movePiece(BLACK, 5, 4, 3, 6);
-			assertThat(game.getCell(4, 5)).isNull();
-			game.movePiece(WHITE, 6, 7, 8, 5);
-			fail("It should not be authorized to do this movement");
-		} catch (GameException e){
+		} catch(GameException e){
 			
 		}
 	}

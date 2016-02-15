@@ -101,8 +101,16 @@ public class CheckersGameImpl implements CheckersGame {
 
 	@Override
 	public PieceColour getWinner() {
-		// TODO Auto-generated method stub
-		return null;
+		PieceColour winner = null;
+		for (int i = 0; i < COLUMNS_NUMBER; i++) {
+			if(getCell(i, 0) == WHITE){
+				winner = getCell(i, 0);
+			}
+			if(getCell(i, 9) == BLACK){
+				winner = getCell(i, 0);
+			}
+		}
+		return winner;
 	}
 
 	public boolean isPieceAuthorizedToMove(PieceColour colour, int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) {

@@ -54,8 +54,7 @@ public class CheckersAdapter implements CheckersGame{
 
 	@Override
 	public PieceColour getWinner() {
-		// TODO Auto-generated method stub
-		return null;
+		return coreGame.getWinner();
 	}
 	
     public String getToken() {

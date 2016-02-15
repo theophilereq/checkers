@@ -50,6 +50,14 @@ public class CheckersBean  implements Serializable {
         game.movePiece(game.getCurrentTurn(), columnSelected, rowSelected, columnTargeted, rowTargeted);
 
     }
+    
+    public ChipColourWrapper getWinner(){
+    	if(game.getWinner() != null){
+    		return new ChipColourWrapper(game.getWinner(), 0);
+    	} else {
+    		return null;
+    	}
+    }
 
     public CheckersGame getGame() {
         return game;
