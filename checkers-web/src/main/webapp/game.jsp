@@ -24,11 +24,17 @@
 
         <div class="main container">
 
-            <div class="alert alert-warning alert-dismissible fade in" role="alert">
+            <div id="emptyCell" class="alert alert-warning alert-dismissible fade in" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
                 <strong>Please select a block with a piece on it!</strong>
+            </div>
+            <div id="sameColor" class="alert alert-warning alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <strong>Same Color</strong>
             </div>
 
             <div id="board" class="ui ten row padded grid">
