@@ -107,7 +107,7 @@ public class CheckersGameImpl implements CheckersGame {
 				winner = getCell(i, 0);
 			}
 			if(getCell(i, 9) == BLACK){
-				winner = getCell(i, 0);
+				winner = getCell(i, 9);
 			}
 		}
 		return winner;

@@ -23,6 +23,7 @@
 
 
         <div class="main container">
+              <div id="winner" class="massive circular ui icon ${game.winner.cssColor} button">WINS</div>
 
             <div id="emptyCell" class="alert alert-warning alert-dismissible fade in" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
