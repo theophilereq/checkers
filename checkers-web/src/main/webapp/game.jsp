@@ -22,19 +22,16 @@
         </div>
 
         <div class="main container">
-<<<<<<< HEAD
-            <div id="winner" class="massive circular ui icon ${game.winner.cssColor} button">WINS</div>
+
+        	<c:if test="${game.winner != null}">
+            	<div id="winner" class="massive circular ui icon ${game.winner.cssColor} button">WINS</div>
+			</c:if>
             
             <p>${game.gameExceptionMessage}</p>
             <c:if test="${game.gameExceptionMessage == null}">
             	<p>Exception null</p>
             </c:if>
 
-=======
-        <c:if test="${game.winner != null}">
-              <div id="winner" class="massive circular ui icon ${game.winner.cssColor} button">WINS</div>
-		</c:if>
->>>>>>> 8b4efa6244c02afcb84df9f939f79ab6a3fcc7f5
             <div id="emptyCell" class="alert alert-warning alert-dismissible fade in" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">×</span>
