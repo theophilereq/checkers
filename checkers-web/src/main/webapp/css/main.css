@@ -17,12 +17,6 @@
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1) inset;
 }
 
-#example .container {
-    width: 765px;
-    right: 128px;
-    margin: 0em auto;
-}
-
 #example .main.container {
     background: transparent !important;
     border: none !important;
@@ -48,6 +42,26 @@
 }
 
 #reset {
-    width: 20%;
+    width: 60%;
     font-size: medium;
+}
+
+#winner {
+    width: 140%;
+}
+
+#turn {
+    width: 40%;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: #E0E0E0;
+    border-bottom: 0;
+}
+
+.navbar-brand {
+    font-family: 'Lato';
+    color: rgba(0,0,0,.6);
+    font-weight: bold;
 }

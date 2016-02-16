@@ -1,35 +1,38 @@
 $(document).ready(function() {
 	sessionStorage.setItem("isSelected",false);
-	$('#emptyCell').hide();
-
 });
 
-function selectCell(col,row,color){
+function selectCell(col,row,color,turnColor){
 
-	// Can change cell selected if clicked on same color
-	if(color == sessionStorage.getItem("selectedColor") && sessionStorage.getItem("isSelected")== "true") {
-		changeSameColorCell(color);
-		setCellToGreen(col,row,color);
-		setSessionForFirstClick(col,row,color);
+	// If first click is on an empty cell
+	if(color == "null" && sessionStorage.getItem("isSelected")== "false"){
+		emptyCell();
 
-	}else {
-		// If first click is on an empty cell
-		if(color == "null" && sessionStorage.getItem("isSelected")== "false"){
-			emptyCell();
+	}else{
 
-		}else{
-			// If first click correctly play
-			if(sessionStorage.getItem("isSelected")== "false"){
+		// Must select color of the turn
+		if(color == turnColor || sessionStorage.getItem('isSelected') == "true") {
+			// Can change cell selected if clicked on same color
+
+			if(color == sessionStorage.getItem("selectedColor") && sessionStorage.getItem("isSelected")== "true") {
+				changeSameColorCell(color);
+				setCellToGreen(col,row,color);
 				setSessionForFirstClick(col,row,color);
-				setCellToGreen(col,row,color)
 
 			}else {
-				// If second click, we send information into URL
-				sendURL(col,row);
+
+				// If first click correctly play
+				if(sessionStorage.getItem("isSelected")== "false"){
+					setSessionForFirstClick(col,row,color);
+					setCellToGreen(col,row,color)
+
+				}else {
+					// If second click, we send information into URL
+					sendURL(col,row);
+				}
 			}
 		}
 	}
-
 }
 
 function sendURL(col,row)
@@ -61,5 +64,5 @@ function setCellToGreen(col,row,color)
 
 function emptyCell()
 {
-	$('#emptyCell').show();
+	document.getElementById('emptyCell').style.display = 'inherit';
 }

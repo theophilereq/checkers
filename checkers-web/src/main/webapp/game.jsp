@@ -13,47 +13,67 @@
     </head>
 
     <body id="example" class="site">
-        <div class="ui fixed inverted main menu">
+
+        <div class="navbar navbar-static-top">
             <div class="container">
-                <div class="title item">
-                    <b>Checkers</b>
+                <div class="row">
+                    <div class="col-lg-offset-4 col-lg-4">
+                        <a class="navbar-brand">CHECKERS GAME</a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="main container">
 
-        	<c:if test="${game.winner != null}">
-            	<div id="winner" class="massive circular ui icon ${game.winner.cssColor} button">WINS</div>
-			</c:if>
-            
-            <p>${game.gameExceptionMessage}</p>
-            <c:if test="${game.gameExceptionMessage == null}">
-            	<p>Exception null</p>
-            </c:if>
-
-            <div id="emptyCell" class="alert alert-warning alert-dismissible fade in" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <strong>Please select a block with a piece on it!</strong>
+            <div class="row">
+                <c:if test="${game.winner != null}">
+                    <div id="div-winner" class="col-md-2 col-md-offset-4 col-xs-offset-3">
+                        <div id="winner" class="massive circular ui icon ${game.winner.cssColor} button">WINS</div>
+                    </div>
+                </c:if>
             </div>
 
-            <div id="board" class="ui ten row padded grid">
-                <c:forEach items="${game.columns}" var="col">
-                    <div id="checkers" class="column">
-                        <c:forEach items="${col.cells}" var="cell">
-                        	<div id="boxGame" class="row">
-                        		<a id="${col.index},${cell.index}" onclick="selectCell(${col.index},${cell.index},'${cell.cssColor}')" class="massive circular ui icon ${cell.cssColor}  button"></a>
-                        	</div>
+            <div class="row">
+                <p>${game.gameExceptionMessage}</p>
+                <c:if test="${game.gameExceptionMessage == null}">
+                    <p>Exception null</p>
+                </c:if>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div style="display: none" id="emptyCell" class="alert alert-warning alert-dismissible fade in" role="alert">
+                        <strong>Please select a block with a piece on it!</strong>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div id="board" class="ui ten row padded grid">
+                        <c:forEach items="${game.columns}" var="col">
+                            <div id="checkers" class="column">
+                                <c:forEach items="${col.cells}" var="cell">
+                                    <div id="boxGame" class="row">
+                                        <a id="${col.index},${cell.index}" onclick="selectCell(${col.index},${cell.index},'${cell.cssColor}','${game.turn}')" class="massive circular ui icon ${cell.cssColor}  button"></a>
+                                    </div>
+                                </c:forEach>
+                            </div>
                         </c:forEach>
                     </div>
-                </c:forEach>
+                </div>
             </div>
-            
-            <div class="massive circular ui icon ${game.turn}  button large" >Turn</div>
-            
-            <a id="reset" href="?reset" class="ui red button" id="reset">Reset game</a>
+
+            <div class="row">
+                <div class="col-md-3 col-md-offset-3 col-sm-6 col-xs-6">
+                    <div id="turn" class="massive circular ui icon ${game.turn} button large" >Turn</div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <a id="reset" href="?reset" class="massive circular icon ui red button" id="reset">Reset game</a>
+                </div>
+            </div>
         </div>
-</body>
+    </body>
 </html>
