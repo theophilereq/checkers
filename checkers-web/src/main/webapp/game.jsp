@@ -21,9 +21,13 @@
             </div>
         </div>
 
-
         <div class="main container">
-              <div id="winner" class="massive circular ui icon ${game.winner.cssColor} button">WINS</div>
+            <div id="winner" class="massive circular ui icon ${game.winner.cssColor} button">WINS</div>
+            
+            <p>${game.gameExceptionMessage}</p>
+            <c:if test="${game.gameExceptionMessage == null}">
+            	<p>Exception null</p>
+            </c:if>
 
             <div id="emptyCell" class="alert alert-warning alert-dismissible fade in" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -43,7 +47,9 @@
                     </div>
                 </c:forEach>
             </div>
+            
             <div class="massive circular ui icon ${game.turn}  button large" >Turn</div>
+            
             <a id="reset" href="?reset" class="ui red button" id="reset">Reset game</a>
         </div>
 </body>

@@ -1,6 +1,7 @@
 package org.checkers.web;
 
 import org.checkers.core.CheckersGame;
+import org.checkers.core.GameException;
 import org.checkers.core.PieceColour;
 import org.checkers.jpa.CheckersAdapter;
 import org.checkers.jpa.CheckersDAO;
@@ -17,22 +18,22 @@ import java.util.List;
  */
 @Named("game")
 @RequestScoped
-public class CheckersBean  implements Serializable {
+public class CheckersBean implements Serializable {
 
     CheckersAdapter game ;
     private PieceColour turn;
+    private String gameExceptionMessage;
 
     @Inject
     CheckersDAO dao;
 
     public List<CheckersColumn> getColumns() {
-
         List<CheckersColumn> cols = new ArrayList<>();
+        
         for (int i = 0; i < game.getColumnsNumber(); i++) {
             cols.add(new CheckersColumn(i, game));
         }
         return cols;
-
     }
     
     public String getTurn() {
@@ -46,9 +47,12 @@ public class CheckersBean  implements Serializable {
         }
     }
 
-    public void movePiece( int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) {
-        game.movePiece(game.getCurrentTurn(), columnSelected, rowSelected, columnTargeted, rowTargeted);
-
+    public void movePiece(int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) throws GameException {
+    	try {
+            game.movePiece(game.getCurrentTurn(), columnSelected, rowSelected, columnTargeted, rowTargeted);
+		} catch (GameException e) {
+			gameExceptionMessage = e.getMessage();
+		}
     }
     
     public ChipColourWrapper getWinner(){
@@ -63,10 +67,8 @@ public class CheckersBean  implements Serializable {
         return game;
     }
 
-
     public void createNewGame() {
         game = dao.createNewGame();
-
     }
 
 	public String getToken() {
@@ -75,8 +77,10 @@ public class CheckersBean  implements Serializable {
 
 	public void loadFromToken(String token) {
 		game = dao.loadFromToken(token);
-		
 	}
 
+	public String getGameExceptionMessage() {
+		return gameExceptionMessage;
+	}
 
 }
