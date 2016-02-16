@@ -23,8 +23,9 @@
 
 
         <div class="main container">
+        <c:if test="${game.winner != null}">
               <div id="winner" class="massive circular ui icon ${game.winner.cssColor} button">WINS</div>
-
+		</c:if>
             <div id="emptyCell" class="alert alert-warning alert-dismissible fade in" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">×</span>
