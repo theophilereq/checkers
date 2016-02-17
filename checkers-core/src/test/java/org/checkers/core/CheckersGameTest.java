@@ -68,10 +68,36 @@ public class CheckersGameTest {
 
 	@Test
 	public void aPlayerMayMoveAPiece() throws Exception {
-		
 		game.movePiece(game.getCell(0, 3), 0, 3, 1, 4);
 		assertThat(game.getCell(0, 3)).isNull();
 		assertThat(game.getCell(1, 4)).isEqualTo(BLACK);
+	}
+	
+	@Test
+	public void aPlayerMayEatAPiece() throws Exception {
+		game.movePiece(WHITE, 3, 6, 4, 5);
+		game.movePiece(BLACK, 4, 3, 5, 4);
+		game.movePiece(WHITE, 1, 6, 0, 5);
+		game.movePiece(BLACK, 5, 4, 3, 6);
+		assertThat(game.getCell(3, 6)).isEqualTo(BLACK);
+		assertThat(game.getCell(4, 5)).isNull();
+	}
+	
+	@Test
+	public void aPlayerMayWin() throws Exception {
+		game.movePiece(WHITE, 3, 6, 4, 5);
+		game.movePiece(BLACK, 2, 3, 3, 4);
+		game.movePiece(WHITE, 5, 6, 6, 5);
+		game.movePiece(BLACK, 3, 4, 5, 6);
+		game.movePiece(WHITE, 2, 7, 3, 6);
+		game.movePiece(BLACK, 8, 3, 9, 4);
+		game.movePiece(WHITE, 3, 8, 2, 7);
+		game.movePiece(BLACK, 5, 6, 3, 8);
+		game.movePiece(WHITE, 5, 8, 4, 7);
+		game.movePiece(BLACK, 9, 4, 8, 5);
+		game.movePiece(WHITE, 4, 9, 5, 8);
+		game.movePiece(BLACK, 3, 8, 4, 9);
+		assertThat(game.getWinner()).isEqualTo(BLACK);
 	}
 
 	@Test
@@ -135,39 +161,4 @@ public class CheckersGameTest {
 		}
 	}
 	
-	@Test
-	public void itCanEatAPiece() throws Exception {
-		try {
-			game.movePiece(WHITE, 3, 6, 4, 5);
-			game.movePiece(BLACK, 4, 3, 5, 4);
-			game.movePiece(WHITE, 2, 7, 3, 6);
-			game.movePiece(BLACK, 3, 4, 2, 5);
-			game.movePiece(WHITE, 1, 6, 0, 5);
-			game.movePiece(BLACK, 2, 5, 1, 6);
-			game.movePiece(WHITE, 3, 6, 2, 5);
-			game.movePiece(BLACK, 2, 3, 1, 4);
-			game.movePiece(WHITE, 3, 8, 2, 7);
-			game.movePiece(BLACK, 1, 2, 2, 3);
-			game.movePiece(WHITE, 2, 7, 3, 6);
-			game.movePiece(BLACK, 1, 6, 2, 7);
-			game.movePiece(WHITE, 4, 9, 3, 8);
-			game.movePiece(BLACK, 2, 7, 4, 9);
-			assertThat(game.getWinner()).isEqualTo(BLACK);
-		} catch (GameException e){
-			
-		}
-	}
-	
-	@Test
-	public void itCanWin() throws Exception {
-		try {
-			game.movePiece(WHITE, 3, 6, 4, 5);
-			game.movePiece(BLACK, 4, 3, 5, 4);
-			game.movePiece(WHITE, 1, 6, 0, 5);
-			game.movePiece(BLACK, 5, 4, 3, 6);
-		} catch(GameException e){
-			
-		}
-	}
-
 }
