@@ -31,9 +31,15 @@ public class CheckersPage {
     }
     
     public void play(int i, int j) {
-        List<WebElement> cols = getColumns();
         // Needs to be modified, as we click on a cell, and not only a column
+    	// List<WebElement> cols = getColumns();
         // cols.get(i).click();
+    	
+        String xpath = String
+                .format("//div[@class='column'][%d]/div/a", i + 1);
+        List<WebElement> cells = Lists.reverse(board.findElements(By
+                .xpath(xpath)));
+        cells.get(j).click();
     }
     
     private List<WebElement> getColumns() {
@@ -67,7 +73,7 @@ public class CheckersPage {
         return getColumns().size();
     }
     
-    public Integer getRowNumber() {
+    public Integer getRowsNumber() {
         String xpath = String.format("//div[@class='column'][%d]/div/a", 1);
         List<WebElement> cells = Lists.reverse(board.findElements(By
                 .xpath(xpath)));
