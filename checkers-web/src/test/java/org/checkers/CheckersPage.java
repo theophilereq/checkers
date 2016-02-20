@@ -30,16 +30,22 @@ public class CheckersPage {
         return board.isDisplayed();
     }
     
-    public void play(int i, int j) {
-        // Needs to be modified, as we click on a cell, and not only a column
+    public void play(int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) {
+        // Old version: Needs to be modified, as we click on a cell, and not only a column
     	// List<WebElement> cols = getColumns();
         // cols.get(i).click();
     	
-        String xpath = String
-                .format("//div[@class='column'][%d]/div/a", i + 1);
-        List<WebElement> cells = Lists.reverse(board.findElements(By
-                .xpath(xpath)));
-        cells.get(j).click();
+        String xpathSelection = String
+                .format("//div[@class='column'][%d]/div/a", columnSelected + 1);
+        List<WebElement> cellsSelection = Lists.reverse(board.findElements(By
+                .xpath(xpathSelection)));
+        cellsSelection.get(rowSelected).click();
+        
+        String xpathTarget = String
+                .format("//div[@class='column'][%d]/div/a", columnTargeted + 1);
+        List<WebElement> cellsTarget = Lists.reverse(board.findElements(By
+                .xpath(xpathTarget)));
+        cellsTarget.get(rowTargeted).click();
     }
     
     private List<WebElement> getColumns() {
