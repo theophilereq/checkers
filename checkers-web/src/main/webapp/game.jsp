@@ -35,13 +35,6 @@
             </div>
 
             <div class="row">
-                <p>${game.gameExceptionMessage}</p>
-                <c:if test="${game.gameExceptionMessage == null}">
-                    <p>Exception null</p>
-                </c:if>
-            </div>
-
-            <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div style="display: none" id="emptyCell" class="alert alert-warning alert-dismissible fade in" role="alert">
                         <strong>Please select a block with a piece on it!</strong>
@@ -51,7 +44,14 @@
 
 
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-2">
+                    <p>Game Exception :</p>
+                    <c:if test="${game.gameExceptionMessage != null}">
+                        <p>${game.gameExceptionMessage}</p>
+                    </c:if>
+                </div>
+
+                <div class="col-md-8">
                     <div id="board" class="ui ten row padded grid">
                         <c:forEach items="${game.columns}" var="col">
                             <div id="checkers" class="column">

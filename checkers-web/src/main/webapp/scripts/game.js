@@ -12,24 +12,25 @@ function selectCell(col,row,color,turnColor){
 
 		// Must select color of the turn
 		if(color == turnColor || sessionStorage.getItem('isSelected') == "true") {
-			// Can change cell selected if clicked on same color
 
-			if(color == sessionStorage.getItem("selectedColor") && sessionStorage.getItem("isSelected")== "true") {
-				changeSameColorCell(color);
-				setCellToGreen(col,row,color);
-				setSessionForFirstClick(col,row,color);
+			// If first click correctly play
+			if(sessionStorage.getItem("isSelected")== "false") {
+				setSessionForFirstClick(col, row, color);
+				setCellToGreen(col, row, color);
 
 			}else {
 
-				// If first click correctly play
-				if(sessionStorage.getItem("isSelected")== "false"){
+				// Click on same color
+				if(color == sessionStorage.getItem("selectedColor") && sessionStorage.getItem("isSelected")== "true") {
+					changeSameColorCell(color);
+					setCellToGreen(col,row,color);
 					setSessionForFirstClick(col,row,color);
-					setCellToGreen(col,row,color)
 
 				}else {
+
 					// If second click, we send information into URL
 					sendURL(col,row);
-				}
+					}
 			}
 		}
 	}

@@ -28,6 +28,8 @@ public class Game {
 
     private String currentTurn = PieceColour.WHITE.toString();
 
+    private String gameExceptionMessage;
+
     public Game() {
 
     }
@@ -53,4 +55,11 @@ public class Game {
         currentTurn = colour.toString();
     }
 
+    public String getGameExceptionMessage() {
+        return gameExceptionMessage;
+    }
+
+    public void setGameExceptionMessage(String gem) {
+        gameExceptionMessage = gem;
+    }
 }

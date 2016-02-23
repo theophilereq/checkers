@@ -25,9 +25,14 @@ public class CheckersAdapter implements CheckersGame{
 
 	@Override
 	public void movePiece(PieceColour colour, int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) throws GameException {
-		coreGame.movePiece(colour, columnSelected, rowSelected, columnTargeted, rowTargeted);
-		this.game.getTurns().add(new Turn(this.game, colour, columnSelected, rowSelected, columnTargeted, rowTargeted));
-		switchTurn();
+		try {
+			coreGame.movePiece(colour, columnSelected, rowSelected, columnTargeted, rowTargeted);
+			this.game.getTurns().add(new Turn(this.game, colour, columnSelected, rowSelected, columnTargeted, rowTargeted));
+			switchTurn();
+			setGameExceptionMessage(null);
+		} catch (GameException e) {
+			setGameExceptionMessage(e.getMessage());
+		}
 
 		dao.save(game);
 	}
@@ -64,5 +69,11 @@ public class CheckersAdapter implements CheckersGame{
 	public PieceColour getCurrentTurn() {
 		return game.getCurrentTurn();
 	}
+
+	public void setGameExceptionMessage(String gem) {
+		game.setGameExceptionMessage(gem);
+	}
+
+	public String getGameExceptionMessage(){ return game.getGameExceptionMessage(); }
 
 }

@@ -44,7 +44,9 @@ public class GameServlet extends HttpServlet {
 			String targetedCol = request.getParameter("targetedCol");
 			if(selectedRow != null && selectedCol != null ) {
 				game.movePiece(Integer.parseInt(selectedCol), Integer.parseInt(selectedRow),  Integer.parseInt(targetedCol), Integer.parseInt(targetedRow));
+				//System.out.println("Before refresh" + game.getGameExceptionMessage());
 				redirectToGameRoot(response, request);
+				//System.out.println("After refresh" + game.getGameExceptionMessage());
 			} else {
 				request.getRequestDispatcher("/game.jsp").include(request, response);
 			}

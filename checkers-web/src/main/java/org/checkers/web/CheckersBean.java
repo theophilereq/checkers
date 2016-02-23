@@ -22,7 +22,6 @@ public class CheckersBean implements Serializable {
 
     CheckersAdapter game ;
     private PieceColour turn;
-    private String gameExceptionMessage;
 
     @Inject
     CheckersDAO dao;
@@ -48,11 +47,7 @@ public class CheckersBean implements Serializable {
     }
 
     public void movePiece(int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) throws GameException {
-    	try {
-            game.movePiece(game.getCurrentTurn(), columnSelected, rowSelected, columnTargeted, rowTargeted);
-		} catch (GameException e) {
-			gameExceptionMessage = e.getMessage();
-		}
+        game.movePiece(game.getCurrentTurn(), columnSelected, rowSelected, columnTargeted, rowTargeted);
     }
     
     public ChipColourWrapper getWinner(){
@@ -80,7 +75,7 @@ public class CheckersBean implements Serializable {
 	}
 
 	public String getGameExceptionMessage() {
-		return gameExceptionMessage;
+		return game.getGameExceptionMessage();
 	}
 
 }
