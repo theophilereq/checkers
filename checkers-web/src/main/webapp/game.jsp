@@ -71,7 +71,7 @@
                     <div id="turn" class="massive circular ui icon ${game.turn} button large" >Turn</div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-6">
-                    <a id="reset" href="?reset" class="massive circular icon ui red button" id="reset">Reset game</a>
+                    <a href="?reset" class="massive circular icon ui red button" id="reset">Reset game</a>
                 </div>
             </div>
         </div>

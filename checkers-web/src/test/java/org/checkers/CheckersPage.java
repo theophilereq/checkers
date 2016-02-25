@@ -31,9 +31,6 @@ public class CheckersPage {
     }
     
     public void play(int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) {
-        // Old version: Needs to be modified, as we click on a cell, and not only a column
-    	// List<WebElement> cols = getColumns();
-        // cols.get(i).click();
     	
         String xpathSelection = String
                 .format("//div[@class='column'][%d]/div/a", columnSelected + 1);

@@ -1,7 +1,6 @@
 package org.checkers;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.checkers.core.PieceColour.BLACK;
 import static org.checkers.core.PieceColour.WHITE;
 
 import org.junit.After;
@@ -39,8 +38,39 @@ public class CheckersWebIT {
 
 	@Test
 	public void aPlayerMayMoveAPiece() throws Exception {
-		page.play(0, 3, 1, 4);
-		assertThat(page.getCell(0, 3)).isNull();
-		assertThat(page.getCell(1, 4)).isEqualTo(BLACK);
+		page.play(1, 6, 2, 5);
+		assertThat(page.getCell(1, 6)).isNull();
+		assertThat(page.getCell(2, 5)).isEqualTo(WHITE);
+	}
+
+	/*@Test
+	public void aGameMayBeReset() throws Exception {
+		page.play(1, 6, 2, 5);
+		assertThat(page.getCell(2,5)).isEqualTo(WHITE);
+		page.reset();
+		page.play(1, 6, 2, 5);
+		assertThat(page.getCell(2,5)).isEqualTo(WHITE);
+		assertThat(page.getCell(1,6)).isNull();
+
+		//doAfter();
+	}*/
+
+	@Test
+	public void aPlayerMayWin() throws Exception {
+		page.play(1,6,2,5);
+		page.play(0,3,1,4);
+		page.play(2,5,0,3);
+		page.play(2,3,3,4);
+		page.play(5,6,4,5);
+		page.play(1,2,2,3);
+		page.play(7,6,6,5);
+		page.play(2,1,1,2);
+		page.play(0,3,2,1);
+		page.play(0,1,1,2);
+		page.play(3,6,2,5);
+		page.play(1,0,0,1);
+		page.play(2,1,1,0);
+
+		assertThat(page.getWinner()).isEqualTo(WHITE);
 	}
 }
