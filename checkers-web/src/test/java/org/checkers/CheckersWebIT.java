@@ -6,9 +6,12 @@ import static org.checkers.core.PieceColour.WHITE;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CheckersWebIT {
 
@@ -43,17 +46,18 @@ public class CheckersWebIT {
 		assertThat(page.getCell(2, 5)).isEqualTo(WHITE);
 	}
 
-	/*@Test
+	@Test
 	public void aGameMayBeReset() throws Exception {
 		page.play(1, 6, 2, 5);
 		assertThat(page.getCell(2,5)).isEqualTo(WHITE);
-		page.reset();
-		page.play(1, 6, 2, 5);
-		assertThat(page.getCell(2,5)).isEqualTo(WHITE);
 		assertThat(page.getCell(1,6)).isNull();
+		page.reset();
 
-		//doAfter();
-	}*/
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("board")));
+
+		assertThat(page.getCell(1,6)).isEqualTo(WHITE);
+	}
 
 	@Test
 	public void aPlayerMayWin() throws Exception {
