@@ -12,3 +12,10 @@
 It launches a Glassfish server on port 9090, so your application can be browsed at :
 
 	http://localhost:9090/checkers-web/
+
+
+## MEMBERS
+
+- Théophile Requillart
+- Alexandre Mouquet
+- Clément Porte
