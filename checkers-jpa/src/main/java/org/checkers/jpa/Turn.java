@@ -65,6 +65,4 @@ public class Turn {
     public int getColumnTargeted() {
         return columnTargeted;
     }
-
-
 }

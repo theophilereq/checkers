@@ -2,13 +2,10 @@ package org.checkers.web;
 
 import org.checkers.core.PieceColour;
 
-/**
- * Created by isen on 28/01/2016.
- */
 public class ChipColourWrapper {
 
-    private int index;
     private PieceColour cell;
+    private int index;
 
     public ChipColourWrapper(PieceColour cell, int i) {
         this.cell = cell;

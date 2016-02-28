@@ -14,52 +14,53 @@ import javax.persistence.OrderColumn;
 
 import org.checkers.core.PieceColour;
 
-@Entity(name="Game")
+@Entity(name = "Game")
 public class Game {
+
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    private String token;
+	private String token;
 
-    @OneToMany(mappedBy="game", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @OrderColumn(name="index")
-    private List<Turn> turns = new ArrayList<>();
+	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OrderColumn(name = "index")
+	private List<Turn> turns = new ArrayList<>();
 
-    private String currentTurn = PieceColour.WHITE.toString();
+	private String currentTurn = PieceColour.WHITE.toString();
 
-    private String gameExceptionMessage;
+	private String gameExceptionMessage;
 
-    public Game() {
+	public Game() {
 
-    }
+	}
 
-    public String getToken() {
-        return token;
-    }
+	public String getToken() {
+		return token;
+	}
 
-    public void setToken(String token) {
-        this.token = token;
+	public void setToken(String token) {
+		this.token = token;
 
-    }
+	}
 
-    public List<Turn> getTurns() {
-        return turns;
-    }
+	public List<Turn> getTurns() {
+		return turns;
+	}
 
-    public PieceColour getCurrentTurn() {
-        return  PieceColour.valueOf(currentTurn);
-    }
+	public PieceColour getCurrentTurn() {
+		return PieceColour.valueOf(currentTurn);
+	}
 
-    public void setCurrentTurn(PieceColour colour) {
-        currentTurn = colour.toString();
-    }
+	public void setCurrentTurn(PieceColour colour) {
+		currentTurn = colour.toString();
+	}
 
-    public String getGameExceptionMessage() {
-        return gameExceptionMessage;
-    }
+	public String getGameExceptionMessage() {
+		return gameExceptionMessage;
+	}
 
-    public void setGameExceptionMessage(String gem) {
-        gameExceptionMessage = gem;
-    }
+	public void setGameExceptionMessage(String gem) {
+		gameExceptionMessage = gem;
+	}
 }

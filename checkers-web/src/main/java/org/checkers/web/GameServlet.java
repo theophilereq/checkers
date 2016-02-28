@@ -14,64 +14,52 @@ import org.apache.commons.lang.StringUtils;
 @WebServlet(urlPatterns = "/g/*")
 public class GameServlet extends HttpServlet {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1717626444319515434L;
+
 	@Inject
-    CheckersBean game;
-	
+	CheckersBean game;
+
 	@Override
-	public void destroy(){
-		
+	public void destroy() {
+
 	}
 
 	@Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String token = getTokenFromRequest(request);
-		
-		if(StringUtils.isEmpty(token) || request.getParameter("reset") != null){
+
+		if (StringUtils.isEmpty(token) || request.getParameter("reset") != null) {
 			game.createNewGame();
 			redirectToGameRoot(response, request);
 		} else {
 			game.loadFromToken(token);
-			
+
 			String selectedRow = request.getParameter("selectedRow");
 			String selectedCol = request.getParameter("selectedCol");
 			String targetedRow = request.getParameter("targetedRow");
 			String targetedCol = request.getParameter("targetedCol");
-			if(selectedRow != null && selectedCol != null ) {
-				game.movePiece(Integer.parseInt(selectedCol), Integer.parseInt(selectedRow),  Integer.parseInt(targetedCol), Integer.parseInt(targetedRow));
-				//System.out.println("Before refresh" + game.getGameExceptionMessage());
+			if (selectedRow != null && selectedCol != null) {
+				game.movePiece(Integer.parseInt(selectedCol), Integer.parseInt(selectedRow),
+						Integer.parseInt(targetedCol), Integer.parseInt(targetedRow));
+				// Before refresh
 				redirectToGameRoot(response, request);
-				//System.out.println("After refresh" + game.getGameExceptionMessage());
+				// After refresh
 			} else {
 				request.getRequestDispatcher("/game.jsp").include(request, response);
 			}
 		}
-    }
+	}
 
 	private void redirectToGameRoot(HttpServletResponse response, HttpServletRequest request) throws IOException {
-		response.sendRedirect(request.getContextPath() 
-				+ request.getServletPath() 
-				+ "/" 
-				+ game.getToken());
-		
+		response.sendRedirect(request.getContextPath() + request.getServletPath() + "/" + game.getToken());
 	}
 
 	private String getTokenFromRequest(HttpServletRequest request) {
-		if(request == null){
+		if (request == null) {
 			return "";
 		}
-		String token = request.getRequestURI().substring(
-				request.getContextPath().length() 
-				+ request.getServletPath().length() + 1);
+		String token = request.getRequestURI()
+				.substring(request.getContextPath().length() + request.getServletPath().length() + 1);
 		return token;
 	}
-        
-    
-
-
 }

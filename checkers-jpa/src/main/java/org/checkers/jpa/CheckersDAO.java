@@ -52,5 +52,4 @@ public class CheckersDAO {
             e.printStackTrace();
         }
     }
-
 }

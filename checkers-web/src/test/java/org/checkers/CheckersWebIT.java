@@ -61,6 +61,7 @@ public class CheckersWebIT {
 
 	@Test
 	public void aPlayerMayWin() throws Exception {
+		assertThat(page.getWinner()).isNull();
 		page.play(1,6,2,5);
 		page.play(0,3,1,4);
 		page.play(2,5,0,3);
@@ -74,7 +75,6 @@ public class CheckersWebIT {
 		page.play(3,6,2,5);
 		page.play(1,0,0,1);
 		page.play(2,1,1,0);
-
 		assertThat(page.getWinner()).isEqualTo(WHITE);
 	}
 }

@@ -37,6 +37,5 @@ public class CheckersGameResource {
     			.header(HttpHeaders.LOCATION, 
     					info.getBaseUri() + game.getToken())
     			.build();
-    }
-	
+    }	
 }

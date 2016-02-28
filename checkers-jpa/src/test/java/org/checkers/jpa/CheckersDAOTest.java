@@ -62,5 +62,4 @@ public class CheckersDAOTest {
 		   game = dao.loadFromToken(game.getToken());
 		   assertThat(game.getCurrentTurn()).isEqualTo(PieceColour.WHITE);
 	   }
-
 }

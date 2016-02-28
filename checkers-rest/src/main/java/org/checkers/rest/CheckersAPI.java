@@ -16,21 +16,20 @@ import org.checkers.jpa.CheckersDAO;
 
 import javax.ws.rs.GET;
 
-
 @Path("/")
 @Produces({ "application/json", "*/*" })
 @RequestScoped
 public class CheckersAPI {
-	
-    @Inject
-    CheckersDAO dao;
-	
+
+	@Inject
+	CheckersDAO dao;
+
 	@Context
 	HttpServletRequest request;
-	
+
 	@Context
 	ResourceContext rc;
-	
+
 	@GET
 	public Response doGet() {
 		CheckersAdapter game = dao.createNewGame();
@@ -40,12 +39,10 @@ public class CheckersAPI {
 						request.getContextPath() + "/api/" + game.getToken())
 				.build();
 	}
-	
+
 	@Path("{gameToken}")
-	public Object getGame(@PathParam("gameToken") String token){
+	public Object getGame(@PathParam("gameToken") String token) {
 		CheckersAdapter game = dao.loadFromToken(token);
 		return rc.initResource(new CheckersGameResource(game));
 	}
-	
-
 }

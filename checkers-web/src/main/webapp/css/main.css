@@ -1,67 +1,69 @@
 #example .header.segment {
-    position: relative;
-    z-index: 2;
-    margin: 0em;
-    min-height: 185px;
-    padding-top: 70px;
-    padding-bottom: 30px;
-    background-color: #FFFFFF;
-    border-bottom: 1px solid #DDDDDD;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	position: relative;
+	z-index: 2;
+	margin: 0em;
+	min-height: 185px;
+	padding-top: 70px;
+	padding-bottom: 30px;
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #DDDDDD;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
+
 #example .header.segment h1 {
-    margin-bottom: 0em;
+	margin-bottom: 0em;
 }
+
 #example .tab.header.segment {
-    padding-bottom: 0em;
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1) inset;
+	padding-bottom: 0em;
+	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1) inset;
 }
 
 #example .main.container {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 2em 0em !important;
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+	padding: 2em 0em !important;
 }
 
 #board {
-    width: 700px;
+	width: 700px;
 }
 
 #checkers {
-	width:10%;
+	width: 10%;
 }
 
 #boxGame {
-	width:40px;
+	width: 40px;
 	height: 50px;
 }
 
 .alert-warning {
-    width: 80%;
+	width: 80%;
 }
 
 #reset {
-    width: 60%;
-    font-size: medium;
+	width: 60%;
+	font-size: medium;
 }
 
 #winner {
-    width: 140%;
+	width: 140%;
 }
 
 #turn {
-    width: 40%;
+	width: 40%;
 }
 
 .navbar {
-    margin-bottom: 0;
-    background-color: #E0E0E0;
-    border-bottom: 0;
+	margin-bottom: 0;
+	background-color: #E0E0E0;
+	border-bottom: 0;
 }
 
 .navbar-brand {
-    font-family: 'Lato';
-    color: rgba(0,0,0,.6);
-    font-weight: bold;
+	font-family: 'Lato';
+	color: rgba(0, 0, 0, .6);
+	font-weight: bold;
 }

@@ -1,4 +1,3 @@
-
 package org.checkers.core;
 
 import static org.checkers.core.PieceColour.BLACK;
@@ -35,13 +34,14 @@ public class CheckersGameImpl implements CheckersGame {
 		}
 	}
 
-
 	@Override
-	public void movePiece(PieceColour colour, int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) {
+	public void movePiece(PieceColour colour, int columnSelected, int rowSelected, int columnTargeted,
+			int rowTargeted) {
 		if (rowTargeted < 0 || rowTargeted >= getRowsNumber() || rowSelected < 0 || rowSelected >= getRowsNumber()) {
 			throw new GameException(OUTSIDE_OF_BOARD_ERROR);
 		}
-		if (columnTargeted < 0 || columnTargeted >= getColumnsNumber() || columnSelected < 0 || columnSelected >= getColumnsNumber()) {
+		if (columnTargeted < 0 || columnTargeted >= getColumnsNumber() || columnSelected < 0
+				|| columnSelected >= getColumnsNumber()) {
 			throw new GameException(OUTSIDE_OF_BOARD_ERROR);
 		}
 		if (getCell(columnTargeted, rowTargeted) != null) {
@@ -50,27 +50,27 @@ public class CheckersGameImpl implements CheckersGame {
 		if (getCell(columnSelected, rowSelected) == null) {
 			throw new GameException(EMPTY_CELL);
 		}
-		if (isPieceAuthorizedToMove(colour,  columnSelected,rowSelected,  columnTargeted,rowTargeted)) {
+		if (isPieceAuthorizedToMove(colour, columnSelected, rowSelected, columnTargeted, rowTargeted)) {
 			board[columnTargeted][rowTargeted] = getCell(columnSelected, rowSelected);
 			board[columnSelected][rowSelected] = null;
-		} else if (isPieceAuthorizedToEat(colour,  columnSelected,rowSelected,  columnTargeted,rowTargeted)){
+		} else if (isPieceAuthorizedToEat(colour, columnSelected, rowSelected, columnTargeted, rowTargeted)) {
 			board[columnTargeted][rowTargeted] = getCell(columnSelected, rowSelected);
 			board[columnSelected][rowSelected] = null;
 			int colToEat = 0;
 			int rowToEat = 0;
-			if(columnSelected - columnTargeted < 0 ){
-				colToEat = columnSelected +1;
-			}else{
-				colToEat = columnSelected -1;
+			if (columnSelected - columnTargeted < 0) {
+				colToEat = columnSelected + 1;
+			} else {
+				colToEat = columnSelected - 1;
 			}
-			if(rowSelected - rowTargeted <0){
-				rowToEat = rowSelected +1;
-			}else{
-				rowToEat = rowSelected -1;
+			if (rowSelected - rowTargeted < 0) {
+				rowToEat = rowSelected + 1;
+			} else {
+				rowToEat = rowSelected - 1;
 			}
-			if(board[colToEat][rowToEat] != null && board[colToEat][rowToEat] != colour){
+			if (board[colToEat][rowToEat] != null && board[colToEat][rowToEat] != colour) {
 				board[colToEat][rowToEat] = null;
-			}else{
+			} else {
 				throw new GameException(NOT_AUTHORIZED_TO_MOVE);
 			}
 		} else {
@@ -103,27 +103,30 @@ public class CheckersGameImpl implements CheckersGame {
 	public PieceColour getWinner() {
 		PieceColour winner = null;
 		for (int i = 0; i < COLUMNS_NUMBER; i++) {
-			if(getCell(i, 0) == WHITE){
+			if (getCell(i, 0) == WHITE) {
 				winner = getCell(i, 0);
 			}
-			if(getCell(i, 9) == BLACK){
+			if (getCell(i, 9) == BLACK) {
 				winner = getCell(i, 9);
 			}
 		}
 		return winner;
 	}
 
-	public boolean isPieceAuthorizedToMove(PieceColour colour, int columnSelected, int rowSelected, int columnTargeted, int rowTargeted) {
+	public boolean isPieceAuthorizedToMove(PieceColour colour, int columnSelected, int rowSelected, int columnTargeted,
+			int rowTargeted) {
 		boolean authorized = false;
-		
+
 		switch (colour) {
 		case BLACK:
-			if (rowSelected == rowTargeted - 1 && (columnSelected == columnTargeted + 1 || columnSelected == columnTargeted - 1)) {
+			if (rowSelected == rowTargeted - 1
+					&& (columnSelected == columnTargeted + 1 || columnSelected == columnTargeted - 1)) {
 				authorized = true;
 			}
 			break;
 		case WHITE:
-			if (rowSelected == rowTargeted + 1 && (columnSelected == columnTargeted + 1 || columnSelected == columnTargeted - 1)) {
+			if (rowSelected == rowTargeted + 1
+					&& (columnSelected == columnTargeted + 1 || columnSelected == columnTargeted - 1)) {
 				authorized = true;
 			}
 			break;
@@ -133,14 +136,13 @@ public class CheckersGameImpl implements CheckersGame {
 		}
 		return authorized;
 	}
-	
+
 	private boolean isPieceAuthorizedToEat(PieceColour colour, int columnSelected, int rowSelected, int columnTargeted,
 			int rowTargeted) {
 		boolean authorized = false;
-		if (Math.abs(rowSelected - rowTargeted) == 2  && Math.abs(columnSelected - columnTargeted) == 2) {
-				authorized = true;
-			}
+		if (Math.abs(rowSelected - rowTargeted) == 2 && Math.abs(columnSelected - columnTargeted) == 2) {
+			authorized = true;
+		}
 		return authorized;
 	}
-
 }

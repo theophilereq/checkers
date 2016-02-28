@@ -10,7 +10,6 @@ import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Ignore;
 import org.junit.Test;
 
-
 public class CheckersAPITest extends JerseyTest{
 	
     @Override
