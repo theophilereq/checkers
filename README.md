@@ -16,12 +16,14 @@ This is a simple JEE7 checkers game made to illustrate various aspects of JEE:
 **Contributors:**
  
  * Alexandre Mouquet ([@alexmouquet](https://github.com/alexmouquet))
- * Clément Porte ([@porrto]https://github.com/porrto)
+ * Clément Porte ([@porrto](https://github.com/porrto))
  * Théophile Requillart ([@theophilereq](https://github.com/theophilereq))
 
 ## How to launch
 
 To launch this project, you must have Firefox 44, 43, 38 or 31, according to the compatibility of the Selenium version, specified in parent `pom.xml`.
+
+Open a command prompt in `checkers` folder and enter:
 
 	$ mvn clean install
 	$ cd checkers-web
